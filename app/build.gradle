@@ -10,12 +10,13 @@ android {
         }
     }
     compileSdkVersion 22
-    buildToolsVersion '23.0.2'
+    buildToolsVersion '23.0.3'
     defaultConfig {
         applicationId "cn.peacesky.beenews"
-        minSdkVersion 17
+        // minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 22
-        versionCode 3
+        versionCode 4
         versionName "1.0"
     }
     sourceSets {

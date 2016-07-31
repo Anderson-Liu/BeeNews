@@ -1,10 +1,12 @@
 package cn.peacesky.beenews.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -23,9 +25,16 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cn.peacesky.beenews.R;
 import cn.peacesky.beenews.model.ListArticleItem;
+import cn.peacesky.beenews.ui.activity.first.DetailActivity;
 import cn.peacesky.beenews.util.ApiUrl;
 import cn.peacesky.beenews.util.Constant;
 import cn.peacesky.beenews.util.OnItemClickLitener;
+
+import static cn.peacesky.beenews.ui.fragment.LatestArticleFragment.ARTICLE_DATE;
+import static cn.peacesky.beenews.ui.fragment.LatestArticleFragment.ARTICLE_ID;
+import static cn.peacesky.beenews.ui.fragment.LatestArticleFragment.ARTICLE_READ;
+import static cn.peacesky.beenews.ui.fragment.LatestArticleFragment.ARTICLE_TITLE;
+import static cn.peacesky.beenews.ui.fragment.LatestArticleFragment.COLUMN_TYPE;
 
 /**
  * 新闻列表的适配器
@@ -210,6 +219,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             newHolder.tvCollegeBroadcast.setText("小喇叭: 欢迎来到蜜蜂病虫害监测风险评估预警系统!");
             setUpViewPager(newHolder.vpHottest, newHolder.llHottestIndicator, headers);
+
         }
     }
 
@@ -249,20 +259,62 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             llBottom.addView(mCircleImages[i]);
         }
 
+        // 没办法直接onClickListener,只能变相通过onTouchListener的按键动作来判断是滑动还是点击
+        // 如果是点击，触发点击事件，并在OnClickListener中进行处理。
+        vp.setOnTouchListener(
+                new View.OnTouchListener() {
+                    private boolean moved;
+
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                            moved = false;
+                            return true;
+                        }
+                        if (motionEvent.getAction() == MotionEvent.ACTION_MOVE) {
+                            moved = true;
+                        }
+                        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                            if (!moved) {
+                                view.performClick();
+                            }
+                        }
+                        return false;
+                    }
+                }
+        );
+
+        // then you can simply use the standard onClickListener ...
+        vp.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ListArticleItem articleItem = articleList.get(currentIndex);
+                        Intent intent = new Intent(context, DetailActivity.class);
+                        intent.putExtra(COLUMN_TYPE, articleItem.getType());
+                        intent.putExtra(ARTICLE_ID, articleItem.getId());
+                        intent.putExtra(ARTICLE_TITLE, articleItem.getTitle());
+                        intent.putExtra(ARTICLE_DATE, articleItem.getPublishDate());
+                        intent.putExtra(ARTICLE_READ, articleItem.getReadTimes());
+                        context.startActivity(intent);
+                    }
+                }
+        );
+
+
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             //图片左右滑动时候，将当前页的圆点图片设为选中状态
             @Override
             public void onPageSelected(int position) {
                 // 一定几个图片，几个圆点，但注意是从0开始的
                 int total = mCircleImages.length;
-                for (int j = 0; j < total; j++) {
+                for (int j = 0; j < total - 1; j++) {
                     if (j == position) {
                         mCircleImages[j].setBackgroundResource(R.drawable.indicator_select);
                     } else {
                         mCircleImages[j].setBackgroundResource(R.drawable.indicator_not_select);
                     }
                 }
-
                 //设置全局变量，currentIndex为选中图标的 index
                 currentIndex = position;
             }
