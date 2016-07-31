@@ -1,5 +1,7 @@
 package cn.peacesky.beenews.util;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.util.Log;
 
 import com.orhanobut.logger.Logger;
@@ -26,12 +28,18 @@ public class DataUtil {
 
     OkHttpClient client = new OkHttpClient();
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     String run(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .addHeader("Authorization", "Basic YW5kZXJzb246YW5kZXJzb24=")
                 .build();
-        try (Response response = client.newCall(request).execute()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            try (Response response = client.newCall(request).execute()) {
+                return response.body().string();
+            }
+        } else {
+            Response response = client.newCall(request).execute();
             return response.body().string();
         }
     }
@@ -100,11 +108,11 @@ public class DataUtil {
     public List<ListArticleItem> getListFromResult(String result) {
         List<ListArticleItem> list = new ArrayList<>();
         try {
-            JSONObject resultJson = new JSONObject(result);
-            JSONArray items = (JSONArray) resultJson.get("_items");
-            if (null == items) {
+            if (result == null) {
                 return list;
             }
+            JSONObject resultJson = new JSONObject(result);
+            JSONArray items = (JSONArray) resultJson.get("_items");
             for (int i = 0; i < items.length(); i++) {
                 JSONObject jsonItem = items.getJSONObject(i);
                 ListArticleItem listArticleItem = this.parseJson2SimpleArticle(jsonItem);

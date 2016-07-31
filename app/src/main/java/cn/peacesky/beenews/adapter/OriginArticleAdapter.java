@@ -105,10 +105,10 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             newHolder.rcvArticleDate.setText(article.getPublishDate());
             //当图片小于3张时候 选取第1张图片
             if (!imageUrls[0].isEmpty()) {
-                newHolder.rcvArticlePhoto.setImageURI(Uri.parse(Constant.BUCKET_HOST_NAME + imageUrls[0]));
-                Logger.d(Constant.BUCKET_HOST_NAME + imageUrls[0]);
+                newHolder.rcvArticlePhoto.setImageURI(Uri.parse(Constant.BUCKET_HOST_NAME + imageUrls[0] + Constant.IMG_SUFIX));
+                Logger.d(Constant.BUCKET_HOST_NAME + imageUrls[0] + Constant.IMG_SUFIX);
             } else {
-                newHolder.rcvArticlePhoto.setImageURI(Uri.parse(ApiUrl.randomImageUrl(article.getId())));
+                newHolder.rcvArticlePhoto.setImageURI(Uri.parse(ApiUrl.randomImageUrl(article.getId()) + Constant.IMG_SUFIX));
             }
             //注意这个阅读次数是 int 类型，需要转化为 String 类型
             newHolder.rcvArticleReadtimes.setText("浏览: " + article.getReadTimes());

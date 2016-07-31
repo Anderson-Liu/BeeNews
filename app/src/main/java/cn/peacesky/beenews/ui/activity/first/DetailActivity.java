@@ -223,10 +223,10 @@ public class DetailActivity extends AppCompatActivity {
 
             //当图片小于3张时候 选取第1张图片
             if (!imageUrls[0].isEmpty()) {
-                articleImage.setImageURI(Uri.parse(Constant.BUCKET_HOST_NAME + imageUrls[0]));
-                Logger.d(Constant.BUCKET_HOST_NAME + imageUrls[0]);
+                articleImage.setImageURI(Uri.parse(Constant.BUCKET_HOST_NAME + imageUrls[0] + Constant.IMG_SUFIX));
+                Logger.d(Constant.BUCKET_HOST_NAME + imageUrls[0] + Constant.IMG_SUFIX);
             } else {
-                articleImage.setImageURI(Uri.parse(ApiUrl.randomImageUrl(articleItem.getId())));
+                articleImage.setImageURI(Uri.parse(ApiUrl.randomImageUrl(articleItem.getId()) + Constant.IMG_SUFIX));
             }
 
             articleBody.getSettings().setJavaScriptEnabled(true);

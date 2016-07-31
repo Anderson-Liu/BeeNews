@@ -158,11 +158,11 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             ItemArticleViewHolder newHolder = (ItemArticleViewHolder) holder;
 
             if (imageUrls[0].isEmpty()) {
-                newHolder.rcvArticlePhoto.setImageURI(Uri.parse(ApiUrl.randomImageUrl(article.getId())));
+                newHolder.rcvArticlePhoto.setImageURI(Uri.parse(ApiUrl.randomImageUrl(article.getId()) + Constant.IMG_SUFIX));
             } else {
                 newHolder.rcvArticlePhoto.setImageURI(Uri.parse
-                        (Constant.BUCKET_HOST_NAME + article.getImageUrls()[0]));
-                Logger.d(Constant.BUCKET_HOST_NAME + article.getImageUrls()[0]);
+                        (Constant.BUCKET_HOST_NAME + article.getImageUrls()[0] + Constant.IMG_SUFIX));
+                Logger.d(Constant.BUCKET_HOST_NAME + article.getImageUrls()[0] + Constant.IMG_SUFIX);
 
             }
             newHolder.rcvArticleTitle.setText(article.getTitle());

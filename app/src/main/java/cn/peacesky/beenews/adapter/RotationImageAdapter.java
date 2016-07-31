@@ -40,10 +40,10 @@ public class RotationImageAdapter extends PagerAdapter {
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             sdv.setLayoutParams(layoutParams);
             sdv.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            Uri uri = Uri.parse(Constant.BUCKET_HOST_NAME + articles.get(i).getImageUrls()[0]);
+            Uri uri = Uri.parse(Constant.BUCKET_HOST_NAME + articles.get(i).getImageUrls()[0] + Constant.IMG_SUFIX);
             sdv.setImageURI(uri);
             sdvs.add(sdv);
-            Logger.d(Constant.BUCKET_HOST_NAME + articles.get(i).getImageUrls()[0]);
+            Logger.d(Constant.BUCKET_HOST_NAME + articles.get(i).getImageUrls()[0] + Constant.IMG_SUFIX);
         }
     }
 
