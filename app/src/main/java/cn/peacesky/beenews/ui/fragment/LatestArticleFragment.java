@@ -195,7 +195,7 @@ public class LatestArticleFragment extends Fragment {
         if (null == list) {
             String url = Constant.EVE_HOST + "/rotationImage?sort=-publishDate";
             String resultBody = dataUtil.request(url);
-            list = dataUtil.getListFromResponse(resultBody);
+            list = dataUtil.getListFromResult(resultBody);
             CacheUtil.simpleListCache.put(Constant.IMG_COLLECTION, list);
         }
         return list;
@@ -213,7 +213,7 @@ public class LatestArticleFragment extends Fragment {
         String url = String.format(preUrl, Constant.SIMP_COLLECTION
                 , "\"aid\"", "\"$gt\"", moreThan);
         String resultBody = dataUtil.request(url);
-        List<ListArticleItem> list = dataUtil.getListFromResponse(resultBody);
+        List<ListArticleItem> list = dataUtil.getListFromResult(resultBody);
         if (0 == list.size()) {
             Logger.d("JSON没获得数据");
         }
@@ -225,7 +225,7 @@ public class LatestArticleFragment extends Fragment {
 
         String url = Constant.EVE_HOST + "/SimpleArticle?sort=-publishDate";
         String resultBody = dataUtil.request(url);
-        List<ListArticleItem> list = dataUtil.getListFromResponse(resultBody);
+        List<ListArticleItem> list = dataUtil.getListFromResult(resultBody);
         if (list.size() == offset - 1 || list.size() < offset) {
             return new ArrayList<>();
         }

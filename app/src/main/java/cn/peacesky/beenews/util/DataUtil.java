@@ -97,11 +97,14 @@ public class DataUtil {
         return resultBody;
     }
 
-    public List<ListArticleItem> getListFromResponse(String result) {
+    public List<ListArticleItem> getListFromResult(String result) {
         List<ListArticleItem> list = new ArrayList<>();
         try {
             JSONObject resultJson = new JSONObject(result);
             JSONArray items = (JSONArray) resultJson.get("_items");
+            if (null == items) {
+                return list;
+            }
             for (int i = 0; i < items.length(); i++) {
                 JSONObject jsonItem = items.getJSONObject(i);
                 ListArticleItem listArticleItem = this.parseJson2SimpleArticle(jsonItem);
