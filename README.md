@@ -1,6 +1,6 @@
-# beenew
+# BeeNews
 
-## 新闻Android客户端 基于Material Design
+## 关于蜜蜂的学术新闻Android客户端
 
 ## 依赖的开源类库、工具
 
@@ -22,3 +22,4 @@
 
 ## 截图
 
+![](http://img.peacesky.cn/beenews_record.mp4)
