@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cities">
+        <item>成都综合试验站</item>
+        <item>广州综合试验站</item>
+        <item>合肥综合试验站</item>
+        <item>金华综合试验站</item>
+        <item>扬州综合试验站</item>
+        <item>天水综合试验站</item>
+        <item>新乡综合试验站</item>
+        <item>牡丹江综合试验站</item>
+        <item>乌鲁木齐综合试验站</item>
+        <item>晋中综合试验站</item>
+        <item>吉林综合试验站</item>
+        <item>武汉综合试验站</item>
+        <item>重庆综合试验站</item>
+        <item>兴城综合试验站</item>
+        <item>儋州综合试验站</item>
+        <item>北京综合试验站</item>
+        <item>固原综合试验站</item>
+        <item>南宁综合试验站</item>
+        <item>延安综合试验站</item>
+        <item>泰安综合试验站</item>
+        <item>红河综合试验站</item>
+    </string-array>
+</resources>

@@ -1,0 +1,27 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <!--主页tab-->
+    <dimen name="main_bottom_tabs_padding_bottom">7dp</dimen>
+    <dimen name="main_bottom_tab_padding_top">5dp</dimen>
+    <dimen name="main_bottom_tab_font_size">16sp</dimen>
+
+
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!--新闻详情页面的字体大小-->
+    <dimen name="detail_title_size">18sp</dimen>
+    <!-- 列表 标题大小-->
+    <dimen name="list_title_size">16sp</dimen>
+
+    <dimen name="margin_48dp">48dp</dimen>
+
+    <dimen name="content_padding">12dp</dimen>
+
+    <dimen name="appbar_collaspe_height">256dp</dimen>
+
+    <!--解决各 API 版本间距不统一-->
+    <dimen name="fab_margin_right">0dp</dimen>
+    <dimen name="fab_margin_bottom">0dp</dimen>
+
+</resources>

@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.afollestad/material-dialogs/0.7.6.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="7f4bbd20dfb2a83706cfa00c10e85e80313e1591">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.afollestad-material-dialogs-0.7.6.0_fbb62e279fb541a9ee7e8cd4d37c30314a1c6e6c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="421b36cf4f0d3bbd75e8f28647fccf36674ef049">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-9.2.1_4ace13b048f118245cca4de1db9e93df8a73e24e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.daimajia.swipelayout/library/1.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="e84b30031d4bab89a2b5c45af4eb9213828524dd">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.daimajia.swipelayout-library-1.2.0_a98a7cc87f62bc3e591a5ec8b38ba11ec41caecf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.9.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="ca51025f4a58fc7fb6cfaa85e7d09b7ae47e6187">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-0.9.0_48e05a18c9b0169ffd739f6774b87dce2fe21fdf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/var/AndroidSDK/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.0_646ed34e063045e3d82da4859bf2569fbaf68905.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="ee19e33a798d11a5cf309a40155b8223fadcdeea">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-appindexing-9.2.1_3a2d75a45864b8759398f84ecafb01c0a3594fa2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anderson/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.4_af48781aab881a10334fd3cbcc3febea58a463cf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/cn.aigestudio.datepicker/DatePicker/2.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="2c9aa50ebfc070749c828f41bf8c2bd89291e9d8">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/cn.aigestudio.datepicker-DatePicker-2.0.2_b2cbde0d78e29df04c968929376eefc90c27d5f4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.9.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="3158c15bb0ae97575debdb40cfcd8f0f9f244526">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-0.9.0_a49f41ca38d8f66a3d9ac7d154af1280e4298fe1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.pnikosis/materialish-progress/1.7/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="41a4edf3c43fdbce6eba27da50b17ff9933987f1">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.pnikosis-materialish-progress-1.7_6e8524888ecd8c6ea58865a83dd307159763ac5d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.9.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="39bd9f893c75eac9e76559cc4e96af6e417afdc5">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-0.9.0_7aaf11a0249e5e9b2973d8794661a583ecb610c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.github.orhanobut/logger/1.12/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="ecb9f39f775f414b18c7c61b4f71345f2ae8f738">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.github.orhanobut-logger-1.12_806f467c04de1bc56b7167d3c811f43c17f61167.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/libs/jpush-android-2.1.7.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="38dd284400de7ff5fab09098a1b8fd30cc5980c7">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/jpush-android-2.1.7_52207aa13bc9a31dd182dfd5c289b6fdd5fe5a49.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.9.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="57528b5deee77bfa2188fc279fd45066366f17f5">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-0.9.0_cb907af83f727ca6f6faa26b06946b0be1680db9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="819c2c3a4fb135e085445d11131d069cf9c32b2a">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-9.2.1_62510cfe84c4b6814dfa00c212c7e47caae8165a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="421b36cf4f0d3bbd75e8f28647fccf36674ef049">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-9.2.1_4ace13b048f118245cca4de1db9e93df8a73e24e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anderson/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/library-2.4.0_8c8c5973f150b1d0f80de460236aac41014ea512.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="3627eacd7f7cafb5e8ae683992e7b2f9b7dcab1a">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-9.2.1_6f39ed135faf40b43f3369c1fd8bc18e696eefff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.github.jorgecastilloprz/fabprogresscircle/1.01/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="9abc58346d8519a4be59cdf0f9fe3eb52dd9c8ac">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.github.jorgecastilloprz-fabprogresscircle-1.01_4a9fe31f09f039cb72b887f17d704648a39f3870.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anderson/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.systembartint/systembartint/1.0.3/de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287/systembartint-1.0.3.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/systembartint-1.0.3_69d9c85d55f5407377039d74f617c8774fe7984a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anderson/.gradle/caches/modules-2/files-2.1/com.michaelpardo/activeandroid/3.1.0-SNAPSHOT/4ab7b0182975bc57c49efc5e0b3baa4a10e4ec08/activeandroid-3.1.0-SNAPSHOT.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="4ab7b0182975bc57c49efc5e0b3baa4a10e4ec08">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/activeandroid-3.1.0-SNAPSHOT_cfa18c792a2bf7d7bd935fb06e006c9b3b7c8077.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.daimajia.swipelayout/library/1.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="e84b30031d4bab89a2b5c45af4eb9213828524dd">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.daimajia.swipelayout-library-1.2.0_a98a7cc87f62bc3e591a5ec8b38ba11ec41caecf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.9.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="3158c15bb0ae97575debdb40cfcd8f0f9f244526">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-0.9.0_a49f41ca38d8f66a3d9ac7d154af1280e4298fe1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0_be1465921c6f04723936cc21f97e5b23756c3d33.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anderson/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.4_af48781aab881a10334fd3cbcc3febea58a463cf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.0.0_4d8f49b526ed18aef4a6b0d30fd81d58ad2afeda.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="ee19e33a798d11a5cf309a40155b8223fadcdeea">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-appindexing-9.2.1_3a2d75a45864b8759398f84ecafb01c0a3594fa2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/libs/butterknife-6.1.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/butterknife-6.1.0_7b5c69d5156013eca689ebaa750fbfbe9204ca30.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha4/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="affe29a90a2a709bfd2b8d6411aa99c05a2be96f">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.0.0-alpha4_d208fc02e8c7af48833990d40e94d857e5cbc541.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-22.2.1_d88be3057421dce9d6a7c90c4ebca4d72bec5895.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.9.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="4ee95617ab850030c51486d02bc9d207b14419c6">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-0.9.0_65a2f83c36f07f5e45d0179a98e8bfe4f296ea26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/var/AndroidSDK/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha4/constraint-layout-solver-1.0.0-alpha4.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="a882fef6a6b9e3efbb0b6b001895a5fc7c35b391">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.0-alpha4_6ebfa677c057c3ff4c39b1021185c60308194c90.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/var/AndroidSDK/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.0_646ed34e063045e3d82da4859bf2569fbaf68905.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="3627eacd7f7cafb5e8ae683992e7b2f9b7dcab1a">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-9.2.1_6f39ed135faf40b43f3369c1fd8bc18e696eefff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anderson/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/library-2.4.0_8c8c5973f150b1d0f80de460236aac41014ea512.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="819c2c3a4fb135e085445d11131d069cf9c32b2a">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-9.2.1_62510cfe84c4b6814dfa00c212c7e47caae8165a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-22.2.1_e28968131c0b4dede5946ca92f45585eef4e695c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anderson/.gradle/caches/modules-2/files-2.1/com.michaelpardo/activeandroid/3.1.0-SNAPSHOT/4ab7b0182975bc57c49efc5e0b3baa4a10e4ec08/activeandroid-3.1.0-SNAPSHOT.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="4ab7b0182975bc57c49efc5e0b3baa4a10e4ec08">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/activeandroid-3.1.0-SNAPSHOT_cfa18c792a2bf7d7bd935fb06e006c9b3b7c8077.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.github.jorgecastilloprz/fabprogresscircle/1.01/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="9abc58346d8519a4be59cdf0f9fe3eb52dd9c8ac">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.github.jorgecastilloprz-fabprogresscircle-1.01_4a9fe31f09f039cb72b887f17d704648a39f3870.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.ToxicBakery.viewpager.transforms/view-pager-transforms/1.2.32/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="392c97a8270ccf3cc7fe6e0a5d97a5e97a61e65c">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.ToxicBakery.viewpager.transforms-view-pager-transforms-1.2.32_4f7d1e5f97bc1e487e22c8a512c2d02c09f96476.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.9.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="4ee95617ab850030c51486d02bc9d207b14419c6">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-0.9.0_65a2f83c36f07f5e45d0179a98e8bfe4f296ea26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.9.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="39bd9f893c75eac9e76559cc4e96af6e417afdc5">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-0.9.0_7aaf11a0249e5e9b2973d8794661a583ecb610c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="5b37cf49773f7f17aca9830efd3053b0cac56728">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-22.2.0_4e6bf6c4a188dd3d136a93cc9bb14e6d3e8603f8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.nispok/snackbar/2.11.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="d0db114dc90b3e192ba48d22421a9c47cfc01f00">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.nispok-snackbar-2.11.0_2cd19f5dfa21e04cb6004a02ff3d3a3e4be7ba0b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.pnikosis/materialish-progress/1.7/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="41a4edf3c43fdbce6eba27da50b17ff9933987f1">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.pnikosis-materialish-progress-1.7_6e8524888ecd8c6ea58865a83dd307159763ac5d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/var/AndroidSDK/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha4/constraint-layout-solver-1.0.0-alpha4.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="a882fef6a6b9e3efbb0b6b001895a5fc7c35b391">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.0-alpha4_6ebfa677c057c3ff4c39b1021185c60308194c90.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha4/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="affe29a90a2a709bfd2b8d6411aa99c05a2be96f">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.0.0-alpha4_d208fc02e8c7af48833990d40e94d857e5cbc541.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="5b37cf49773f7f17aca9830efd3053b0cac56728">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-22.2.0_4e6bf6c4a188dd3d136a93cc9bb14e6d3e8603f8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.ToxicBakery.viewpager.transforms/view-pager-transforms/1.2.32/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="392c97a8270ccf3cc7fe6e0a5d97a5e97a61e65c">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.ToxicBakery.viewpager.transforms-view-pager-transforms-1.2.32_4f7d1e5f97bc1e487e22c8a512c2d02c09f96476.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="6b896c1067633db41e9c10a3a5d0919c5c4cfc8c">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-9.2.1_d9081eb17a0477fba904e1dfa4c8b901bfd52b0f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="1821601ddbec5ff125653097812823388700af74">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support-design-22.2.1_2e2fbcb0debcdfc57ee234cefe6ded3ef68a0a25.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="6b896c1067633db41e9c10a3a5d0919c5c4cfc8c">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-9.2.1_d9081eb17a0477fba904e1dfa4c8b901bfd52b0f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-22.2.1_d88be3057421dce9d6a7c90c4ebca4d72bec5895.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/libs/jpush-android-2.1.7.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="38dd284400de7ff5fab09098a1b8fd30cc5980c7">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/jpush-android-2.1.7_52207aa13bc9a31dd182dfd5c289b6fdd5fe5a49.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.afollestad/material-dialogs/0.7.6.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="7f4bbd20dfb2a83706cfa00c10e85e80313e1591">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.afollestad-material-dialogs-0.7.6.0_fbb62e279fb541a9ee7e8cd4d37c30314a1c6e6c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/cn.aigestudio.datepicker/DatePicker/2.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="2c9aa50ebfc070749c828f41bf8c2bd89291e9d8">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/cn.aigestudio.datepicker-DatePicker-2.0.2_b2cbde0d78e29df04c968929376eefc90c27d5f4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.nispok/snackbar/2.11.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="d0db114dc90b3e192ba48d22421a9c47cfc01f00">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.nispok-snackbar-2.11.0_2cd19f5dfa21e04cb6004a02ff3d3a3e4be7ba0b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-22.2.1_e28968131c0b4dede5946ca92f45585eef4e695c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.0.0_4d8f49b526ed18aef4a6b0d30fd81d58ad2afeda.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anderson/.gradle/caches/modules-2/files-2.1/com.readystatesoftware.systembartint/systembartint/1.0.3/de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287/systembartint-1.0.3.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/systembartint-1.0.3_69d9c85d55f5407377039d74f617c8774fe7984a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/libs/butterknife-6.1.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/butterknife-6.1.0_7b5c69d5156013eca689ebaa750fbfbe9204ca30.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="1821601ddbec5ff125653097812823388700af74">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.android.support-design-22.2.1_2e2fbcb0debcdfc57ee234cefe6ded3ef68a0a25.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anderson/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/okhttp-3.4.1_eb6d595237af203fc136a9651117bbd8bf7ecf26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.github.orhanobut/logger/1.12/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="ecb9f39f775f414b18c7c61b4f71345f2ae8f738">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.github.orhanobut-logger-1.12_806f467c04de1bc56b7167d3c811f43c17f61167.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.9.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.0"
+        sha1="ca51025f4a58fc7fb6cfaa85e7d09b7ae47e6187">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-0.9.0_48e05a18c9b0169ffd739f6774b87dce2fe21fdf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/anderson/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/okio-1.9.0_7a1168c321573f5c092ae8c8407cdf371d6f30a6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0_be1465921c6f04723936cc21f97e5b23756c3d33.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.9.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.2"
+        sha1="57528b5deee77bfa2188fc279fd45066366f17f5">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-0.9.0_cb907af83f727ca6f6faa26b06946b0be1680db9.jar" />
+    </item>
+
+</items>

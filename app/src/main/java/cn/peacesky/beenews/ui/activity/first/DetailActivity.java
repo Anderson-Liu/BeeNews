@@ -1,0 +1,240 @@
+package cn.peacesky.beenews.ui.activity.first;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.MenuItem;
+import android.webkit.WebView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.orhanobut.logger.Logger;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import cn.jpush.android.api.JPushInterface;
+import cn.peacesky.beenews.R;
+import cn.peacesky.beenews.Receiver.JpushReceiver;
+import cn.peacesky.beenews.model.ArticleItem;
+import cn.peacesky.beenews.ui.fragment.LatestArticleFragment;
+import cn.peacesky.beenews.util.ApiUrl;
+import cn.peacesky.beenews.util.CacheUtil;
+import cn.peacesky.beenews.util.Constant;
+import cn.peacesky.beenews.util.DataUtil;
+
+/**
+ * Created by tomchen on 2/23/16.
+ */
+public class DetailActivity extends AppCompatActivity {
+    @InjectView(R.id.article_body)
+    WebView articleBody;
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
+    @InjectView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbar;
+    @InjectView(R.id.article_image)
+    SimpleDraweeView articleImage;
+    @InjectView(R.id.detail_title)
+    TextView detailTitle;
+    @InjectView(R.id.detail_date)
+    TextView detailDate;
+    @InjectView(R.id.detail_source)
+    TextView detailSource;
+    @InjectView(R.id.detail_read)
+    TextView detailRead;
+    @InjectView(R.id.detail_article)
+    LinearLayout detailArticle;
+
+    private int columnType;
+    private int articleID;
+    private String photoKey;
+    private String title;
+    private String date;
+    private int read;
+    private DataUtil dataUtil = new DataUtil();
+
+    // TODO: 7/29/16 对从通知栏传递过来的参数进行对象构建
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.detail);
+        ButterKnife.inject(this);
+
+        initToolbar();
+
+        Intent intent = getIntent();
+        boolean isFromJpush = intent.getBooleanExtra(JpushReceiver.IS_FROM_JPUSH, false);
+
+        if (isFromJpush) {
+            Bundle bundle = getIntent().getExtras();
+            //从通知栏的推送跳转过来
+            title = bundle.getString(JPushInterface.EXTRA_ALERT);
+
+            String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
+
+            Logger.d("获得的extras" + extras);
+            ArticleItem article = new ArticleItem();
+
+            Logger.d("通过通知建立的article" + article);
+
+            columnType = article.getType();
+            articleID = article.getId();
+            // date = article.getPublishDate();
+            // read = article.getReadTimes();
+
+
+        } else {
+            //从列表跳转过来
+            columnType = intent.getIntExtra(LatestArticleFragment.COLUMN_TYPE, 0);
+            articleID = intent.getIntExtra(LatestArticleFragment.ARTICLE_ID, 7948);
+            title = intent.getStringExtra(LatestArticleFragment.ARTICLE_TITLE);
+            date = intent.getStringExtra(LatestArticleFragment.ARTICLE_DATE);
+            read = intent.getIntExtra(LatestArticleFragment.ARTICLE_READ, 452);
+        }
+
+        new GetArticleTask().execute();
+    }
+
+
+    private void initToolbar() {
+
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_left_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    /**
+     * 设置宽度
+     * 当LinearLayout 的内容小于屏幕高度时候
+     * 也能上拉实现图片和ToolBar动画效果
+     */
+    private void setMinHeight() {
+
+
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int screenHeight = displaymetrics.heightPixels;
+
+        int actionBarHeight = 0;
+        TypedValue tv = new TypedValue();
+        if (this.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+        }
+
+        detailArticle.setMinimumHeight(screenHeight - actionBarHeight);
+    }
+
+
+    /**
+     * 根据 type 和 aid 获取新闻详情
+     */
+    public ArticleItem getArticleDetail(int articleID, int type) {
+
+        // Try to get the article from cache.
+        ArticleItem articleItem = CacheUtil.detailArticleCache.get(articleID);
+        if (null == articleItem) {
+//            String url = Constant.EVE_HOST + "/FullArticle?" +
+//                    "where={\"type\": " + type + ", \"aid\":" + articleID +"}";
+            String preUrl = Constant.EVE_HOST + "/%s?where={%s:%d, %s:%d}";
+            String url = String.format(preUrl, Constant.FULL_COLLECTION,
+                    "\"type\"", type, "\"aid\"", articleID);
+            String result;
+            try {
+                result = dataUtil.request(url);
+                JSONObject resultJson = new JSONObject(result);
+                JSONArray items = (JSONArray) resultJson.get("_items");
+                JSONObject item = items.getJSONObject(0);
+                articleItem = dataUtil.parseJson2Article(item);
+                CacheUtil.detailArticleCache.put(articleID, articleItem);
+            } catch (JSONException e) {
+                Logger.e(Arrays.toString(e.getStackTrace()));
+            }
+            Logger.d("当前lruCache中的内容：" + CacheUtil.detailArticleCache);
+            if (articleItem == null) {
+                Logger.d("根据type: " + type + " , 和AID: " + articleID + "找不到结果。" + articleItem);
+            } else {
+                Logger.d("根据type: " + type + " , 和AID: " + articleID + " 建立的文档对象:" + articleItem);
+            }
+        } else {
+            Logger.d("本文章取自缓存" + articleItem);
+        }
+        return articleItem;
+    }
+
+    /**
+     * 选项菜单
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            //返回键 back的箭头
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return false;
+    }
+
+
+    // 通过type和articleID获取文章
+    class GetArticleTask extends AsyncTask<Integer, Void, ArticleItem> {
+
+
+        @Override
+        protected ArticleItem doInBackground(Integer... params) {
+            return getArticleDetail(articleID, columnType);
+        }
+
+        /**
+         * Runs on the UI thread after {@link #doInBackground}. The
+         * specified result is the value returned by {@link #doInBackground}.
+         */
+        @Override
+        protected void onPostExecute(ArticleItem articleItem) {
+            super.onPostExecute(articleItem);
+
+            detailSource.setText("来源：" + articleItem.getSource());
+
+            collapsingToolbar.setTitle(articleItem.getTitle());
+
+            detailTitle.setText(articleItem.getTitle());
+            detailDate.setText(articleItem.getPublishDate());
+            detailRead.setText(articleItem.getReadTimes() + "浏览");
+
+            String[] imageUrls = articleItem.getImageUrls();
+
+            //当图片小于3张时候 选取第1张图片
+            if (!imageUrls[0].isEmpty()) {
+                articleImage.setImageURI(Uri.parse(Constant.BUCKET_HOST_NAME + imageUrls[0]));
+                Logger.d(Constant.BUCKET_HOST_NAME + imageUrls[0]);
+            } else {
+                articleImage.setImageURI(Uri.parse(ApiUrl.randomImageUrl(articleItem.getId())));
+            }
+
+            articleBody.getSettings().setJavaScriptEnabled(true);
+
+            articleBody.loadDataWithBaseURL("", "<meta name=\"viewport\" content=\"" +
+                    "width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, " +
+                    "user-scalable=no\" />" + "<style>img{display: inline;height: auto;max-width: 100%;}" +
+                    "</style>" + articleItem.getBody(), "text/html", "UTF-8", "");
+        }
+    }
+}
