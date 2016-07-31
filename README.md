@@ -23,3 +23,5 @@
 ## 截图
 
 ![](http://img.peacesky.cn/beenews_record.mp4)
+![](http://7xriwb.com1.z0.glb.clouddn.com/device-2016-08-01-010028.png?imageMogr2/thumbnail/500x/strip/quality/50/format/webp)
+![](http://7xriwb.com1.z0.glb.clouddn.com/device-2016-08-01-010102.png?imageMogr2/thumbnail/500x/strip/quality/50/format/webp)
