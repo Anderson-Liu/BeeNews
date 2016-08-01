@@ -61,7 +61,7 @@ public class RotationImageAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return articles.size();
+        return Constant.COUNT_ROTATION;
     }
 
     @Override

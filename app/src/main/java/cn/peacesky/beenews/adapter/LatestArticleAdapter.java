@@ -288,7 +288,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case UPTATE_VIEWPAGER:
-                        if (msg.arg1 >= headerArticles.size()) {
+                        if (msg.arg1 >= Constant.COUNT_ROTATION) {
                             vp.setCurrentItem(0);
                         } else if (msg.arg1 != 0) {
                             vp.setCurrentItem(msg.arg1);
@@ -310,7 +310,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
                 message.arg1 = savedIndex + 1;
                 mHandler.sendMessage(message);
             }
-        }, 6000, 6000);
+        }, 5000, 5000);
 
 
         // then you can simply use the standard onClickListener ...

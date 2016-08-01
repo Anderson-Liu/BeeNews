@@ -336,7 +336,7 @@ public class LatestArticleFragment extends Fragment {
             }
 
             data.addAll(getArticleList(params[0]));
-            // data.addAll(getMoreById);
+
             return data;
         }
 

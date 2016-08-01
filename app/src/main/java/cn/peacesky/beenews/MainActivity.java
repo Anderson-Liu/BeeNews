@@ -63,7 +63,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private NightModeHelper mNightModeHelper;
 
-    private FragmentPagerAdapter mFragmentPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+    private FragmentPagerAdapter mFragmentPagerAdapter =
+            new FragmentPagerAdapter(getSupportFragmentManager()) {
         @Override
         public Fragment getItem(int position) {
             return ArticleFragmentContainer.newInstance("FirstFragment");
