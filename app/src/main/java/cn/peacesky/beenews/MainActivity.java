@@ -106,7 +106,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             // 设置夜间模式
             case R.id.men_action_change_mode:
                 PrefUtils.setDarkMode(!PrefUtils.isDarkMode());
-                // MainActivity.this.recreate();//重新创建当前Activity实例
+                MainActivity.this.recreate();//重新创建当前Activity实例
                 return true;
         }
         return super.onOptionsItemSelected(item);
