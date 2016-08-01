@@ -2,6 +2,7 @@ package cn.peacesky.beenews.util;
 
 /**
  * 重写安卓的LruCache，实现缓存过期
+ *
  * @author: christopherperry
  */
 

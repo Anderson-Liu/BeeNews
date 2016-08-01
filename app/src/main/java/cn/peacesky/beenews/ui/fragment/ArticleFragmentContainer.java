@@ -59,7 +59,7 @@ public class ArticleFragmentContainer extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frag_first_container, container);
+        View view = inflater.inflate(R.layout.frag_first_container, null);
         mAct = getActivity();
         //注入
         ButterKnife.inject(this, view);
