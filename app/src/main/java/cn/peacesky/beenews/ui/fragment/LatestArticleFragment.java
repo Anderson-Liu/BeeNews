@@ -13,7 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.nispok.snackbar.Snackbar;
@@ -21,7 +20,6 @@ import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -47,11 +45,7 @@ public class LatestArticleFragment extends Fragment {
     public static final String ARTICLE_READ = "read_times";
     public static final String ARTICLE_DATE = "date";
     public static final String COLUMN_TYPE = "type";
-    private static final String ARTICLE_LATEST_PARAM = "param";
-    private static final int UPTATE_VIEWPAGER = 0;
-    private static final int TYPE_INT = 0;
-    // latest的column是0
-    private static final int mColumn = 0;
+
     @InjectView(R.id.rcv_article_latest)
     RecyclerView mRecyclerView;
     @InjectView(R.id.swiperefreshlayout)
@@ -64,17 +58,10 @@ public class LatestArticleFragment extends Fragment {
 
     private LatestArticleAdapter mAdapter;
 
-
     // 新闻列表数据
     private List<ListArticleItem> mArticleList = new ArrayList<>();
-
     private boolean loading = false;
     private boolean bottom = false;
-
-    //设置当前 第几个图片 被选中
-    private int currentIndex = 0;
-    private ImageView[] mBottomImages;// 底部只是当前页面的小圆点
-    private Timer timer = new Timer(); // 为了方便取消定时轮播，将 Timer 设为全局
 
     public static LatestArticleFragment newInstance(String param) {
         return new LatestArticleFragment();

@@ -1,11 +1,8 @@
 package cn.peacesky.beenews;
 
-import android.app.UiModeManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -14,21 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnCheckedChanged;
 import cn.jpush.android.api.JPushInterface;
 import cn.peacesky.beenews.ui.activity.menu.SettingActivity;
 import cn.peacesky.beenews.ui.activity.menu.SiteActivity;
 import cn.peacesky.beenews.ui.activity.menu.SystemActivity;
-import cn.peacesky.beenews.ui.fragment.ArticleFragmentContainer;
 import cn.peacesky.beenews.util.CacheUtil;
-import cn.peacesky.beenews.util.NightModeHelper;
 import cn.peacesky.beenews.util.PrefUtils;
 import cn.peacesky.beenews.util.TimeExpiringLruCache;
 
@@ -42,55 +34,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     Toolbar toolbar;
     @InjectView(R.id.fragment_container)
     FrameLayout fragmentContainer;
-    @InjectView(R.id.rb_tab_common)
-    RadioButton rbTabCommon;
-    @InjectView(R.id.rb_tab_sale)
-    RadioButton rbTabSale;
-    @InjectView(R.id.rb_tab_visit)
-    RadioButton rbTabVisit;
     @InjectView(R.id.nav_view)
     NavigationView navView;
     @InjectView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    @InjectView(R.id.main_radios)
-    RadioGroup mainRadios;
 
-    private boolean isNightMode = true;
     private ActionBarDrawerToggle toggle;//代替监听器
-    private UiModeManager uiManager;
-
-    private int mThemeId;
-
-    private NightModeHelper mNightModeHelper;
-
-    private FragmentPagerAdapter mFragmentPagerAdapter =
-            new FragmentPagerAdapter(getSupportFragmentManager()) {
-        @Override
-        public Fragment getItem(int position) {
-            return ArticleFragmentContainer.newInstance("FirstFragment");
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-    };
-
-    //这儿是3个大的 fragment
-    @OnCheckedChanged({R.id.rb_tab_common, R.id.rb_tab_sale, R.id.rb_tab_visit})
-    public void onChecked(RadioButton rb) {
-        Boolean isChecked = rb.isChecked();
-        //检查是否选中
-        if (isChecked) {
-            int viewId = rb.getId();
-            //instantiateItem从FragmentManager中查找Fragment，找不到就getItem新建一个
-            Fragment fragment =
-                    (Fragment) mFragmentPagerAdapter.instantiateItem(fragmentContainer, viewId);
-            mFragmentPagerAdapter.setPrimaryItem(fragmentContainer, viewId, fragment);
-            mFragmentPagerAdapter.finishUpdate(fragmentContainer);
-        }
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,10 +48,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         navView.setNavigationItemSelectedListener(this);
-
-        // Get max available VM memory, exceeding this amount will throw an
-        // OutOfMemory exception. Stored in kilobytes as LruCache takes an
-        // int in its constructor.
+        // 获取软件可用内存以分配缓存内存
         final int maxMemory = (int) (Runtime.getRuntime().maxMemory());
         // Use 1/8th of the available memory for this memory cache.
         final int cacheSize = maxMemory / 8;
@@ -111,21 +57,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         final int expireTime = 1200000;
         CacheUtil.detailArticleCache = new TimeExpiringLruCache<>(cacheSize, expireTime);
         CacheUtil.simpleListCache = new TimeExpiringLruCache<>(cursorCacheSize, expireTime);
-
-        //onSaveInstanceState会保存已点击 tab 的 aid
-        if (savedInstanceState == null) {
-            //默认将第一个RadioButton设为选中
-            Log.i(Log_FILTER, "savedInstanceState  null");
-            rbTabCommon.performClick();
-        } else {
-            Log.i(Log_FILTER, "savedInstanceState not null");
-
-            RadioButton radioButton = (RadioButton) findViewById(savedInstanceState.getInt(savedTab));
-            Log.i(Log_FILTER, radioButton.getText() + "");
-
-            radioButton.performClick();
-        }
-
         initToolbar();
     }
 
@@ -152,7 +83,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         // setTile 要在下面这句话上面，不然会失效
         setSupportActionBar(toolbar);
 
-
         // 监听DrawerLayout
         // 将抽屉事件和 toolbar联系起来，这是 material design 的设计
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
@@ -171,7 +101,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             // 设置夜间模式
             case R.id.men_action_change_mode:
                 PrefUtils.setDarkMode(!PrefUtils.isDarkMode());
-                MainActivity.this.recreate();//重新创建当前Activity实例
+                // MainActivity.this.recreate();//重新创建当前Activity实例
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -231,10 +161,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(savedTab, mainRadios.getCheckedRadioButtonId());
-        RadioButton radioButton = (RadioButton) findViewById(mainRadios.getCheckedRadioButtonId());
-        //删除下面这行，不然容易发生重影
-//        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -295,13 +221,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 return prepareIntent(SettingActivity.class);
             case R.id.nav_system:
                 return prepareIntent(SystemActivity.class);
-
             case R.id.nav_news:
-                MainActivity.this.recreate();//重新创建当前Activity实例
+                // MainActivity.this.recreate();//重新创建当前Activity实例
                 return true;
             default:
                 return true;
         }
     }
-
 }

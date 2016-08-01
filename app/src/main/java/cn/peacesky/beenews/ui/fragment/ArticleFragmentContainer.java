@@ -80,7 +80,7 @@ public class ArticleFragmentContainer extends Fragment {
 //     */
 //    private void setTablayout() {
 //        tablayout.addTab(tablayout.newTab().setText(LATEST), true);
-//        tablayout.addTab(tablayout.newTab().setText(MASTER));
+//        tablayout.addTab(tablayout.newTab().setText(CYDT));
 //    }
 
     /**

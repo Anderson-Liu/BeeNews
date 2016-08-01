@@ -57,38 +57,9 @@
             android:layout_height="1px"
             android:background="@color/lightslategray" />
 
-        <RadioGroup
-            android:id="@+id/main_radios"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/main_bottom_tabs_padding_bottom"
-            android:visibility="gone">
-
-            <RadioButton
-                android:id="@+id/rb_tab_common"
-                style="@style/main_bottom_tab"
-                android:checked="false"
-                android:drawableTop="@drawable/tab_first_selector"
-                android:text="@string/main_tab_first" />
-
-            <RadioButton
-                android:id="@+id/rb_tab_sale"
-                style="@style/main_bottom_tab"
-                android:drawableTop="@drawable/tab_second_selector"
-                android:text="@string/main_tab_second" />
-
-            <RadioButton
-                android:id="@+id/rb_tab_visit"
-                style="@style/main_bottom_tab"
-                android:drawableTop="@drawable/tab_third_selector"
-                android:text="@string/main_tab_third" />
-        </RadioGroup>
     </LinearLayout>
 
-    <!--导航页-->
+    <!--添加导航页，包括资讯，试验站，系统等-->
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

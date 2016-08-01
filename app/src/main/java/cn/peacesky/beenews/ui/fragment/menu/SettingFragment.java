@@ -21,14 +21,6 @@ public class SettingFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
 
-//        SwitchCompat ss = (SwitchCompat) getActivity().findViewById(R.id.switch_compat);
-//        ss.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                Logger.d("SwitchCompat " + buttonView + " changed to " + isChecked);
-//            }
-//        });
-
         final CheckBoxPreference checkboxPref = (CheckBoxPreference) getPreferenceManager()
                 .findPreference(getString(R.string.save_net_mode));
 
