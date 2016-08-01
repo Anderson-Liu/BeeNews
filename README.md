@@ -22,5 +22,5 @@
 
 ## 截图
 
-![图1](http://7xriwb.com1.z0.glb.clouddn.com/device-2016-08-01-010028.png?imageMogr2/thumbnail/500x/strip/quality/50/format/webp)
-![图2](http://7xriwb.com1.z0.glb.clouddn.com/device-2016-08-01-010102.png?imageMogr2/thumbnail/500x/strip/quality/50/format/webp)
+![图1](http://7xriwb.com1.z0.glb.clouddn.com/device-2016-08-01-010028.png?imageMogr2/thumbnail/500x/strip)
+![图2](http://7xriwb.com1.z0.glb.clouddn.com/device-2016-08-01-010028.png?imageMogr2/thumbnail/500x/strip)
