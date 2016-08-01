@@ -60,11 +60,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         CacheUtil.detailArticleCache = new TimeExpiringLruCache<>(cacheSize, expireTime);
         CacheUtil.simpleListCache = new TimeExpiringLruCache<>(cursorCacheSize, expireTime);
         initToolbar();
+        // 启动主页新闻的fragment_container
         FragmentManager fm = getSupportFragmentManager();
         ArticleFragmentContainer container = new ArticleFragmentContainer();
         fm.beginTransaction().add(R.id.fragment_container, container).commit();
     }
-
 
     /**
      * 设置"更多"菜单项

@@ -1,7 +1,7 @@
 package cn.peacesky.beenews.util;
 
 /**
- * Created by tomchen on 2/4/16.
+ * Created by anderson on 1/8/16.
  */
 public class ColumnName {
     public final static String LATEST = "最新资讯";

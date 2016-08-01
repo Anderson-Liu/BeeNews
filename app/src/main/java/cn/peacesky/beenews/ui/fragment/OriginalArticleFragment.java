@@ -192,37 +192,6 @@ public class OriginalArticleFragment extends Fragment {
                 }
             }
         });
-
-//        new ArticleTask(mActivity).execute(-1);
-
-//        mAdapter.setOnLoadMoreListener(new OriginArticleAdapter.OnLoadMoreListener() {
-//            /**
-//             * 加载更多
-//             */
-//            @Override
-//            public void onLoadMore() {
-//
-//                mHandler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//                        //   remove progress item
-//                        mArticleList.remove(mArticleList.size() - 1);
-//                        //notifyItemRemoved(int position)
-//                        // 第position个被删除的时候刷新，同样会有动画。
-//                        mAdapter.notifyItemRemoved(mArticleList.size());
-//                        List<ListArticleItem> moreArticles = getArticleList(mColumn,
-//                                mArticleList.get(mArticleList.size() - 1).getId());
-//
-//                        for (int i = 0; i < moreArticles.size(); i++) {
-//                            mArticleList.add(moreArticles.get(i));
-//                            mAdapter.notifyItemInserted(mArticleList.size());
-//                        }
-//                        mAdapter.setLoaded();
-//                    }
-//                }, 1000);
-//            }
-//        });
     }
 
     @Override
@@ -236,10 +205,6 @@ public class OriginalArticleFragment extends Fragment {
      * @param moreThan 大于该id的新闻数组
      */
     public List<ListArticleItem> getMoreById(int type, int moreThan) {
-
-//        String url = Constant.EVE_HOST + "/SimpleArticle?" +
-//                "where={\"aid\":{\"$gt\":" + moreThan  +  "}, " + "\"type\": " + type + "}" +
-//                "&sort=-publishDate";
 
         String preUrl = Constant.EVE_HOST + "/%s?where={%s:{%s:%d}, %s:%d}&sort=-publishDate";
         String url = String.format(preUrl, Constant.SIMP_COLLECTION,
@@ -354,10 +319,6 @@ public class OriginalArticleFragment extends Fragment {
         protected void onPostExecute(final List<ListArticleItem> moreArticles) {
             // 新增新闻数据
             super.onPostExecute(moreArticles);
-//            Context context = getActivity().getApplicationContext();
-//            if (moreArticles.size() == 0) {
-//                Toast.makeText(context, "没有更多的文章了", Toast.LENGTH_SHORT).show();
-//            }
             if (mArticleList.size() == 0) {
                 mArticleList.addAll(moreArticles);
                 mAdapter.notifyDataSetChanged();
@@ -366,12 +327,7 @@ public class OriginalArticleFragment extends Fragment {
                 mArticleList.remove(mArticleList.size() - 1);
                 mArticleList.addAll(moreArticles);
                 mAdapter.notifyDataSetChanged();
-//                for (int i = 0; i < moreArticles.size(); i++) {
-//                    mArticleList.add(moreArticles.get(i));
-//                    mAdapter.notifyItemInserted(mArticleList.size());
-//                }
                 loading = false;
-//            mArticleList.addAll(moreArticles);
             }
         }
     }

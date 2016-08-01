@@ -26,6 +26,7 @@ import cn.peacesky.beenews.util.ColumnName;
  * 实现滑动切换几个资讯栏目进行分类阅读
  */
 public class ArticleFragmentContainer extends Fragment {
+
     private static final String PARAM = "param";
 
     private static final String LOG = "PAGER_LOG";
@@ -69,30 +70,22 @@ public class ArticleFragmentContainer extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //初始化Tablayout
-//        setTablayout();
         //初始化ViewPager
         setViewPager();
     }
-
-//    /**
-//     * 设置Tablayout
-//     */
-//    private void setTablayout() {
-//        tablayout.addTab(tablayout.newTab().setText(LATEST), true);
-//        tablayout.addTab(tablayout.newTab().setText(CYDT));
-//    }
 
     /**
      * 设置ViewPager
      */
     private void setViewPager() {
         //设置适配器
-        ArticleFragmentAdapter adapter = new ArticleFragmentAdapter(getChildFragmentManager());
+        ArticleFragmentAdapter adapter =
+                new ArticleFragmentAdapter(getChildFragmentManager());
         vp.setAdapter(adapter);
         //绑定tab
         tablayout.setupWithViewPager(vp);
         tablayout.setTabsFromPagerAdapter(adapter);
+        // 设置切换动画
         vp.setPageTransformer(true, new DepthPageTransformer());
     }
 
