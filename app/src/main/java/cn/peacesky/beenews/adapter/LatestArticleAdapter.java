@@ -55,8 +55,8 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int TYPE_ROTATION = 1;
     //Handler 用到的参数值
     private static final int UPTATE_VIEWPAGER = 0;
-    Timer timer = new Timer();
     int savePosition;
+    private Timer timer = new Timer();
     //新闻列表
     private List<ListArticleItem> articleList;
     //设置当前 第几个图片 被选中
@@ -288,7 +288,9 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case UPTATE_VIEWPAGER:
-                        if (msg.arg1 != 0) {
+                        if (msg.arg1 >= headerArticles.size()) {
+                            vp.setCurrentItem(0);
+                        } else if (msg.arg1 != 0) {
                             vp.setCurrentItem(msg.arg1);
                         } else {
                             //false 当从末页调到首页是，不显示翻页动画效果，
@@ -305,9 +307,6 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             public void run() {
                 Message message = new Message();
                 message.what = UPTATE_VIEWPAGER;
-                if (savedIndex == headerArticles.size() - 1) {
-                    savedIndex = -1;
-                }
                 message.arg1 = savedIndex + 1;
                 mHandler.sendMessage(message);
             }
@@ -352,7 +351,6 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-
             }
 
             @Override
