@@ -3,6 +3,7 @@ package cn.peacesky.beenews;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +21,7 @@ import cn.jpush.android.api.JPushInterface;
 import cn.peacesky.beenews.ui.activity.menu.SettingActivity;
 import cn.peacesky.beenews.ui.activity.menu.SiteActivity;
 import cn.peacesky.beenews.ui.activity.menu.SystemActivity;
+import cn.peacesky.beenews.ui.fragment.ArticleFragmentContainer;
 import cn.peacesky.beenews.util.CacheUtil;
 import cn.peacesky.beenews.util.PrefUtils;
 import cn.peacesky.beenews.util.TimeExpiringLruCache;
@@ -58,6 +60,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         CacheUtil.detailArticleCache = new TimeExpiringLruCache<>(cacheSize, expireTime);
         CacheUtil.simpleListCache = new TimeExpiringLruCache<>(cursorCacheSize, expireTime);
         initToolbar();
+        FragmentManager fm = getSupportFragmentManager();
+        ArticleFragmentContainer container = new ArticleFragmentContainer();
+        fm.beginTransaction().add(R.id.fragment_container, container).commit();
     }
 
 
