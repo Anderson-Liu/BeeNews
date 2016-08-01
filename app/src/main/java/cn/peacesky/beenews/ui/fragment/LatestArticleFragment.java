@@ -259,11 +259,11 @@ public class LatestArticleFragment extends Fragment {
             List<ListArticleItem> rotationItem = getRotationItem();
             if (rotationItem != null) {
                 int rotationSize = rotationItem.size();
-                if (rotationSize > Constant.COUNT_ROTATION) {
-                    // 轮播文章
-                    data.addAll(rotationItem.subList(0, Constant.COUNT_ROTATION - 1));
+                if (rotationSize >= Constant.COUNT_ROTATION) {
+                    // 轮播文章, 放在列表前五位
+                    data.addAll(rotationItem.subList(0, Constant.COUNT_ROTATION));
                 } else if (rotationSize != 0) {
-                    data.addAll(rotationItem.subList(0, rotationSize - 1));
+                    data.addAll(rotationItem.subList(0, rotationSize));
                 }
             }
             // 其他全部文章

@@ -56,10 +56,11 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
     //Handler 用到的参数值
     private static final int UPTATE_VIEWPAGER = 0;
     Timer timer = new Timer();
+    int savePosition;
     //新闻列表
     private List<ListArticleItem> articleList;
     //设置当前 第几个图片 被选中
-    private int currentIndex = 0;
+    private int savedIndex = 0;
     //context
     private Context context;
     private LayoutInflater mLayoutInflater;
@@ -132,7 +133,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
         return articleList.get(articleList.size() - 1).getId();
     }
 
-    //返回最底的文章id，为了下拉刷新从该id开始加载
+    //返回最顶的文章id，为了下拉刷新从该id开始加载
     public int getTopOriginArticleId() {
         if (articleList == null || articleList.size() == 0)
             return -1;
@@ -154,8 +155,8 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             return;
         }
 
-        // 注意RecyclerView第0项是 ViewPager 占据了0 1 2 3 4 5 6 7图片
-        // 那么下面的列表展示是 RecyclerView 的第1项，从第7项开始
+        // 注意RecyclerView第0项是 ViewPager 占据了0 1 2 3 4图片
+        // 那么下面的列表展示是 RecyclerView 的第1项，从第5项开始
         ListArticleItem article = articleList.get(position + Constant.COUNT_ROTATION - 1);
         String[] imageUrls = article.getImageUrls();
 
@@ -212,7 +213,6 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
         } else if (holder instanceof RotationViewHolder) {
 
             RotationViewHolder newHolder = (RotationViewHolder) holder;
-
             List<ListArticleItem> headers = articleList.subList(0, Constant.COUNT_ROTATION);
 
             newHolder.tvCollegeBroadcast.setText("小喇叭: 欢迎来到蜜蜂病虫害监测风险评估预警系统!");
@@ -299,15 +299,16 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
         };
 
+
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 Message message = new Message();
                 message.what = UPTATE_VIEWPAGER;
-                if (currentIndex == headerArticles.size() - 1) {
-                    currentIndex = -1;
+                if (savedIndex == headerArticles.size() - 1) {
+                    savedIndex = -1;
                 }
-                message.arg1 = currentIndex + 1;
+                message.arg1 = savedIndex + 1;
                 mHandler.sendMessage(message);
             }
         }, 6000, 6000);
@@ -318,7 +319,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ListArticleItem articleItem = articleList.get(currentIndex);
+                        ListArticleItem articleItem = articleList.get(savedIndex);
                         Intent intent = new Intent(context, DetailActivity.class);
                         intent.putExtra(COLUMN_TYPE, articleItem.getType());
                         intent.putExtra(ARTICLE_ID, articleItem.getId());
@@ -335,9 +336,10 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             //图片左右滑动时候，将当前页的圆点图片设为选中状态
             @Override
             public void onPageSelected(int position) {
+
                 // 一定几个图片，几个圆点，但注意是从0开始的
                 int total = mCircleImages.length;
-                for (int j = 0; j < total - 1; j++) {
+                for (int j = 0; j < total; j++) {
                     if (j == position) {
                         mCircleImages[j].setBackgroundResource(R.drawable.indicator_select);
                     } else {
@@ -345,7 +347,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
                     }
                 }
                 //设置全局变量，currentIndex为选中图标的 index
-                currentIndex = position;
+                savedIndex = position;
             }
 
             @Override
@@ -356,32 +358,6 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             @Override
             public void onPageScrollStateChanged(int state) {
 
-                //实现切换到末尾后返回到第一张
-                switch (state) {
-                    // 手势滑动
-                    case ViewPager.SCROLL_STATE_DRAGGING:
-                        break;
-
-                    // 界面切换中
-                    case ViewPager.SCROLL_STATE_SETTLING:
-                        break;
-
-                    case ViewPager.SCROLL_STATE_IDLE:// 滑动结束，即切换完毕或者加载完毕
-                        // 当前为最后一张，此时从右向左滑，则切换到第一张
-                        if (vp.getCurrentItem() == vp.getAdapter()
-                                .getCount() - 1) {
-                            vp.setCurrentItem(0, false);
-                        }
-                        // 当前为第一张，此时从左向右滑，则切换到最后一张
-                        else if (vp.getCurrentItem() == 0) {
-                            vp.setCurrentItem(vp.getAdapter()
-                                    .getCount() - 1, false);
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
             }
         });
     }
@@ -390,8 +366,8 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
     public int getItemCount() {
         // 得到当前RecyclerView中Item的总数目
         // 大于一定数目时，自动加载更多数据
-        //因为多了一个头部，所以是+1,但是头部 ViewPager 占了7个
-        //所以实际是少了6个
+        // 因为多了一个头部，所以是+1,但是头部 ViewPager 占了5个
+        // 所以实际是少了4个
         if (articleList != null) {
             return articleList.size() + 1 - Constant.COUNT_ROTATION;
         } else {
