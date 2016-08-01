@@ -11,6 +11,6 @@ public class ApiUrl {
      */
     public static String randomImageUrl(int seed) {
         Random random = new Random(seed);
-        return Constant.RANDOM_IMAGE + random.nextInt(Constant.COUNT_IMAGE);
+        return Constant.RANDOM_IMAGE + random.nextInt(Constant.COUNT_IMAGE) + Constant.IMG_SUFIX;
     }
 }

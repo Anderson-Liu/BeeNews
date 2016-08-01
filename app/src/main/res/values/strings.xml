@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BeeSystem</string>
+    <string name="app_name">BeeNews</string>
 
     <!--tabs-->
     <string name="menu_feedback">用户反馈</string>

@@ -79,8 +79,6 @@ public class SmartSimpleDraweeView extends SimpleDraweeView {
                 } else {
                     placeImage = getResources().getDrawable(R.drawable.click_load_image);
                 }
-
-
                 //省流量，设置图片为点击加载
                 final GenericDraweeHierarchyBuilder builder =
                         new GenericDraweeHierarchyBuilder(getResources());
@@ -110,7 +108,6 @@ public class SmartSimpleDraweeView extends SimpleDraweeView {
                     }
                 });
             }
-
         }
     }
 }

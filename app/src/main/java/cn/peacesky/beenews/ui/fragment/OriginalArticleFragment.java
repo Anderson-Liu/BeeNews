@@ -186,8 +186,10 @@ public class OriginalArticleFragment extends Fragment {
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
-                mSwipeRefreshLayout.setRefreshing(true);
-                new MoreArticleTask().execute(mAdapter.getTopArticleId());
+                if (mSwipeRefreshLayout != null) {
+                    mSwipeRefreshLayout.setRefreshing(true);
+                    new MoreArticleTask().execute(mAdapter.getTopArticleId());
+                }
             }
         });
 
@@ -244,7 +246,7 @@ public class OriginalArticleFragment extends Fragment {
                 "\"aid\"", "\"$gt\"", moreThan, "\"type\"", type);
 
         String resultBody = dataUtil.request(url);
-        List<ListArticleItem> list = dataUtil.getListFromResponse(resultBody);
+        List<ListArticleItem> list = dataUtil.getListFromResult(resultBody);
 
         if (0 == list.size()) {
             Logger.d("JSON没获得数据");
@@ -261,7 +263,7 @@ public class OriginalArticleFragment extends Fragment {
         String preUrl = Constant.EVE_HOST + "/%s?where={%s: %d}&&sort=-publishDate";
         String url = String.format(preUrl, Constant.SIMP_COLLECTION, "\"type\"", type);
         String resultBody = dataUtil.request(url);
-        List<ListArticleItem> list = dataUtil.getListFromResponse(resultBody);
+        List<ListArticleItem> list = dataUtil.getListFromResult(resultBody);
         if (list.size() == offset - 1) {
             return new ArrayList<ListArticleItem>();
         }
