@@ -20,6 +20,7 @@ import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -63,7 +64,7 @@ public class LatestArticleFragment extends Fragment {
     private boolean loading = false;
     private boolean bottom = false;
 
-    public static LatestArticleFragment newInstance(String param) {
+    static LatestArticleFragment newInstance(String param) {
         return new LatestArticleFragment();
     }
 
@@ -89,12 +90,9 @@ public class LatestArticleFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));//这里用线性显示 类似于listview
         //最开始 ViewPager 没有数据
-//        setUpViewPager( null );
-
         Logger.d("in onActivityCreated");
 
         mAdapter = new LatestArticleAdapter(mActivity, mArticleList);
-
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -113,11 +111,8 @@ public class LatestArticleFragment extends Fragment {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 
                 super.onScrolled(recyclerView, dx, dy);
-
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-
                 totalItemCount = layoutManager.getItemCount();
-
                 lastVisibleItem = layoutManager.findLastVisibleItemPosition();
 
                 if (lastVisibleItem != totalItemCount - 1) {
@@ -179,7 +174,7 @@ public class LatestArticleFragment extends Fragment {
     }
 
 
-    public List<ListArticleItem> getRotationItem() {
+    private List<ListArticleItem> getRotationItem() {
         List<ListArticleItem> list = CacheUtil.simpleListCache.get(Constant.IMG_COLLECTION);
         if (null == list) {
             String url = Constant.EVE_HOST + "/rotationImage?sort=-publishDate";
@@ -193,13 +188,10 @@ public class LatestArticleFragment extends Fragment {
     /**
      * @param moreThan 大于该id的新闻数组
      */
-    public List<ListArticleItem> getMoreById(int moreThan) {
-
-//        String url = Constant.EVE_HOST + "/SimpleArticle?" +
-//                "where={\"aid\":{\"$gt\":" + moreThan  +  "}}" +
-//                "&&sort=-publishDate";
+    private List<ListArticleItem> getMoreById(int moreThan) {
+        // 构造RESTful API
         String preUrl = Constant.EVE_HOST + "/%s?where={%s:{%s:%d}}&&sort=-publishDate";
-        String url = String.format(preUrl, Constant.SIMP_COLLECTION
+        String url = String.format(Locale.CHINESE, preUrl, Constant.SIMP_COLLECTION
                 , "\"aid\"", "\"$gt\"", moreThan);
         String resultBody = dataUtil.request(url);
         List<ListArticleItem> list = dataUtil.getListFromResult(resultBody);
@@ -210,8 +202,7 @@ public class LatestArticleFragment extends Fragment {
     }
 
 
-    public List<ListArticleItem> getArticleList(int offset) {
-
+    private List<ListArticleItem> getArticleList(int offset) {
         String url = Constant.EVE_HOST + "/SimpleArticle?sort=-publishDate";
         String resultBody = dataUtil.request(url);
         List<ListArticleItem> list = dataUtil.getListFromResult(resultBody);
@@ -227,7 +218,7 @@ public class LatestArticleFragment extends Fragment {
 
     //Integer 是输入参数
     // 得到比某个id大的新闻数组
-    class MoreArticleTask extends AsyncTask<Integer, Void, List<ListArticleItem>> {
+    private class MoreArticleTask extends AsyncTask<Integer, Void, List<ListArticleItem>> {
 
         /**
          * 在onPreExecute()完成后立即执行，用于执行较为费时的
@@ -241,7 +232,7 @@ public class LatestArticleFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            List<ListArticleItem> data = new ArrayList<ListArticleItem>();
+            List<ListArticleItem> data = new ArrayList<>();
 
             List<ListArticleItem> rotationItem = getRotationItem();
             if (rotationItem != null) {
@@ -284,7 +275,7 @@ public class LatestArticleFragment extends Fragment {
     }
 
     //Integer 是输入参数
-    class LatestArticleTask extends AsyncTask<Integer, Void, List<ListArticleItem>> {
+    private class LatestArticleTask extends AsyncTask<Integer, Void, List<ListArticleItem>> {
 
         /**
          * Runs on the UI thread before {@link #doInBackground}.

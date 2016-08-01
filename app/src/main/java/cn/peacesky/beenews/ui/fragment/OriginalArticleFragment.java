@@ -22,6 +22,7 @@ import com.orhanobut.logger.Logger;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -43,12 +44,11 @@ import cn.peacesky.beenews.util.OnItemClickLitener;
  */
 public class OriginalArticleFragment extends Fragment {
 
-
-    public static final String ARTICLE_ID = "id";
-    public static final String ARTICLE_TITLE = "title";
-    public static final String ARTICLE_DATE = "date";
-    public static final String ARTICLE_READ = "read_times";
-    public static final String COLUMN_TYPE = "type";
+    private static final String ARTICLE_ID = "id";
+    private static final String ARTICLE_TITLE = "title";
+    private static final String ARTICLE_DATE = "date";
+    private static final String ARTICLE_READ = "read_times";
+    private static final String COLUMN_TYPE = "type";
     private static final String POSITION = "column";
     @InjectView(R.id.rcv_article_origin)
     RecyclerView mRecyclerView;
@@ -66,14 +66,13 @@ public class OriginalArticleFragment extends Fragment {
     private String listType;
 
 
-    public static OriginalArticleFragment newInstance(int param) {
+    static OriginalArticleFragment newInstance(int param) {
         OriginalArticleFragment fragment = new OriginalArticleFragment();
         Bundle args = new Bundle();
         args.putInt(POSITION, param);
         fragment.setArguments(args);
         return fragment;
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -143,14 +142,9 @@ public class OriginalArticleFragment extends Fragment {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 
                 super.onScrolled(recyclerView, dx, dy);
-
-
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-
                 int totalItemCount = layoutManager.getItemCount();
-
                 int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
-
                 if (!loading && totalItemCount < (lastVisibleItem + Constant.VISIBLE_THRESHOLD)) {
                     new ArticleTask(mActivity).execute(totalItemCount);
                     loading = true;
@@ -204,10 +198,10 @@ public class OriginalArticleFragment extends Fragment {
      * @param type     第几个栏目
      * @param moreThan 大于该id的新闻数组
      */
-    public List<ListArticleItem> getMoreById(int type, int moreThan) {
+    private List<ListArticleItem> getMoreById(int type, int moreThan) {
 
         String preUrl = Constant.EVE_HOST + "/%s?where={%s:{%s:%d}, %s:%d}&sort=-publishDate";
-        String url = String.format(preUrl, Constant.SIMP_COLLECTION,
+        String url = String.format(Locale.CHINESE, preUrl, Constant.SIMP_COLLECTION,
                 "\"aid\"", "\"$gt\"", moreThan, "\"type\"", type);
 
         String resultBody = dataUtil.request(url);
@@ -224,13 +218,13 @@ public class OriginalArticleFragment extends Fragment {
      * @param type   第几个栏目
      * @param offset 偏移 aid
      */
-    public List<ListArticleItem> getArticleList(int type, int offset) {
+    private List<ListArticleItem> getArticleList(int type, int offset) {
         String preUrl = Constant.EVE_HOST + "/%s?where={%s: %d}&&sort=-publishDate";
-        String url = String.format(preUrl, Constant.SIMP_COLLECTION, "\"type\"", type);
+        String url = String.format(Locale.CHINESE, preUrl, Constant.SIMP_COLLECTION, "\"type\"", type);
         String resultBody = dataUtil.request(url);
         List<ListArticleItem> list = dataUtil.getListFromResult(resultBody);
         if (list.size() == offset - 1) {
-            return new ArrayList<ListArticleItem>();
+            return new ArrayList<>();
         }
 
         list = list.subList(offset - 1, list.size() - 1);
@@ -243,7 +237,7 @@ public class OriginalArticleFragment extends Fragment {
     // 下拉刷新时获取更多数据
     // Integer 是输入参数
     // 得到比某个id大的新闻数组
-    class MoreArticleTask extends AsyncTask<Integer, Void, List<ListArticleItem>> {
+    private class MoreArticleTask extends AsyncTask<Integer, Void, List<ListArticleItem>> {
         @Override
         protected List<ListArticleItem> doInBackground(Integer... params) {
             try {
@@ -251,7 +245,6 @@ public class OriginalArticleFragment extends Fragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
             return getMoreById(mColumn, params[0]);
         }
 
@@ -277,11 +270,11 @@ public class OriginalArticleFragment extends Fragment {
     }
 
 
-    class ArticleTask extends AsyncTask<Integer, Void, List<ListArticleItem>> {
+    private class ArticleTask extends AsyncTask<Integer, Void, List<ListArticleItem>> {
 
         private Context mContext;
 
-        public ArticleTask(Context context) {
+        ArticleTask(Context context) {
             mContext = context;
         }
 

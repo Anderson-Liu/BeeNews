@@ -19,14 +19,15 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
+ * 处理文章数据获取的相关事项
  * Created by anderson on 7/31/16.
  */
 
 public class DataUtil {
 
-    OkHttpClient client = new OkHttpClient();
+    private OkHttpClient client = new OkHttpClient();
 
-    String run(String url) throws IOException {
+    private String run(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .addHeader("Authorization", "Basic YW5kZXJzb246YW5kZXJzb24=")
@@ -36,7 +37,13 @@ public class DataUtil {
     }
 
 
-    public ListArticleItem parseJson2SimpleArticle(JSONObject jsonItem) {
+    /**
+     * 把Json对象解析为ListArticleItem
+     *
+     * @param jsonItem Json 对象
+     * @return ListArticleItem对象
+     */
+    private ListArticleItem parseJson2ListArticle(JSONObject jsonItem) {
         ListArticleItem listArticleItem = new ListArticleItem();
         try {
             int type = jsonItem.getInt("type");
@@ -60,6 +67,12 @@ public class DataUtil {
     }
 
 
+    /**
+     * 将Json对象解析为 ArticleItem 对象
+     *
+     * @param jsonItem Json对象
+     * @return 解析得到的 ArticleItem 对象
+     */
     public ArticleItem parseJson2Article(JSONObject jsonItem) {
         ArticleItem articleItem = new ArticleItem();
         try {
@@ -85,6 +98,12 @@ public class DataUtil {
         return articleItem;
     }
 
+    /**
+     * 根据Url发送请求，返回得到的Body
+     *
+     * @param url 目标url
+     * @return 返回得到的Body, 为String
+     */
     public String request(String url) {
         String resultBody = null;
         try {
@@ -96,6 +115,12 @@ public class DataUtil {
         return resultBody;
     }
 
+    /**
+     * 根据请求得到的Body构造成JSONArray对象
+     *
+     * @param result 请求得到的Body
+     * @return 得到的JSONArray对象
+     */
     public List<ListArticleItem> getListFromResult(String result) {
         List<ListArticleItem> list = new ArrayList<>();
         try {
@@ -106,7 +131,7 @@ public class DataUtil {
             JSONArray items = (JSONArray) resultJson.get("_items");
             for (int i = 0; i < items.length(); i++) {
                 JSONObject jsonItem = items.getJSONObject(i);
-                ListArticleItem listArticleItem = this.parseJson2SimpleArticle(jsonItem);
+                ListArticleItem listArticleItem = this.parseJson2ListArticle(jsonItem);
                 list.add(listArticleItem);
             }
         } catch (JSONException e) {

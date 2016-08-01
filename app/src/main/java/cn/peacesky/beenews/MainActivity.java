@@ -75,11 +75,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return true;
     }
 
-
     /**
      * 设置ToolBar
      */
-    protected void initToolbar() {
+    private void initToolbar() {
 
         toolbar.setTitle(R.string.app_name);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
@@ -111,7 +110,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     /**
      * 搜索跳转
@@ -227,7 +225,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_system:
                 return prepareIntent(SystemActivity.class);
             case R.id.nav_news:
-                // MainActivity.this.recreate();//重新创建当前Activity实例
+                MainActivity.this.recreate();   //重新创建当前Activity实例
                 return true;
             default:
                 return true;

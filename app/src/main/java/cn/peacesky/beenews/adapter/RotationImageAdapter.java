@@ -20,13 +20,13 @@ import cn.peacesky.beenews.util.Constant;
  * 头部轮播图片的适配类
  * Created by tomchen on 2015/8/28.
  */
-public class RotationImageAdapter extends PagerAdapter {
+class RotationImageAdapter extends PagerAdapter {
 
     private Context context;
     private List<ListArticleItem> articles;
     private List<SimpleDraweeView> sdvs = new ArrayList<>();
 
-    public RotationImageAdapter(Context context, List<ListArticleItem> articles) {
+    RotationImageAdapter(Context context, List<ListArticleItem> articles) {
         this.context = context;
         if (articles == null || articles.size() == 0) {
             this.articles = new ArrayList<>();
@@ -34,6 +34,7 @@ public class RotationImageAdapter extends PagerAdapter {
             this.articles = articles;
         }
 
+        assert articles != null;
         for (int i = 0; i < articles.size(); i++) {
             SimpleDraweeView sdv = new SimpleDraweeView(context);
             ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(

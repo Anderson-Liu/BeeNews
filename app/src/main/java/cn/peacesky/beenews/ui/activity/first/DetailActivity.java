@@ -8,8 +8,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
@@ -23,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -37,7 +36,7 @@ import cn.peacesky.beenews.util.Constant;
 import cn.peacesky.beenews.util.DataUtil;
 
 /**
- * Created by tomchen on 2/23/16.
+ * Created by anderson on 2/23/16.
  */
 public class DetailActivity extends AppCompatActivity {
     @InjectView(R.id.article_body)
@@ -83,20 +82,14 @@ public class DetailActivity extends AppCompatActivity {
             Bundle bundle = getIntent().getExtras();
             //从通知栏的推送跳转过来
             title = bundle.getString(JPushInterface.EXTRA_ALERT);
-
             String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
-
             Logger.d("获得的extras" + extras);
             ArticleItem article = new ArticleItem();
-
             Logger.d("通过通知建立的article" + article);
-
             columnType = article.getType();
             articleID = article.getId();
             // date = article.getPublishDate();
             // read = article.getReadTimes();
-
-
         } else {
             //从列表跳转过来
             columnType = intent.getIntExtra(LatestArticleFragment.COLUMN_TYPE, 0);
@@ -111,50 +104,25 @@ public class DetailActivity extends AppCompatActivity {
 
 
     private void initToolbar() {
-
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_left_back);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 
-    /**
-     * 设置宽度
-     * 当LinearLayout 的内容小于屏幕高度时候
-     * 也能上拉实现图片和ToolBar动画效果
-     */
-    private void setMinHeight() {
-
-
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int screenHeight = displaymetrics.heightPixels;
-
-        int actionBarHeight = 0;
-        TypedValue tv = new TypedValue();
-        if (this.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
-        }
-
-        detailArticle.setMinimumHeight(screenHeight - actionBarHeight);
-    }
-
 
     /**
      * 根据 type 和 aid 获取新闻详情
      */
-    public ArticleItem getArticleDetail(int articleID, int type) {
+    private ArticleItem getArticleDetail(int articleID, int type) {
 
         // Try to get the article from cache.
         ArticleItem articleItem = CacheUtil.detailArticleCache.get(articleID);
         if (null == articleItem) {
-//            String url = Constant.EVE_HOST + "/FullArticle?" +
-//                    "where={\"type\": " + type + ", \"aid\":" + articleID +"}";
             String preUrl = Constant.EVE_HOST + "/%s?where={%s:%d, %s:%d}";
-            String url = String.format(preUrl, Constant.FULL_COLLECTION,
+            String url = String.format(Locale.CHINESE, preUrl, Constant.FULL_COLLECTION,
                     "\"type\"", type, "\"aid\"", articleID);
             String result;
             try {
@@ -193,10 +161,8 @@ public class DetailActivity extends AppCompatActivity {
         return false;
     }
 
-
     // 通过type和articleID获取文章
-    class GetArticleTask extends AsyncTask<Integer, Void, ArticleItem> {
-
+    private class GetArticleTask extends AsyncTask<Integer, Void, ArticleItem> {
 
         @Override
         protected ArticleItem doInBackground(Integer... params) {
@@ -210,15 +176,11 @@ public class DetailActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(ArticleItem articleItem) {
             super.onPostExecute(articleItem);
-
-            detailSource.setText("来源：" + articleItem.getSource());
-
+            detailSource.setText(String.format(Locale.CHINESE, "来源：%s", articleItem.getSource()));
             collapsingToolbar.setTitle(articleItem.getTitle());
-
             detailTitle.setText(articleItem.getTitle());
             detailDate.setText(articleItem.getPublishDate());
-            detailRead.setText(articleItem.getReadTimes() + "浏览");
-
+            detailRead.setText(String.format(Locale.CHINESE, "%d 浏览", articleItem.getReadTimes()));
             String[] imageUrls = articleItem.getImageUrls();
 
             //当图片小于3张时候 选取第1张图片
@@ -228,8 +190,6 @@ public class DetailActivity extends AppCompatActivity {
             } else {
                 articleImage.setImageURI(Uri.parse(ApiUrl.randomImageUrl(articleItem.getId()) + Constant.IMG_SUFIX));
             }
-
-            articleBody.getSettings().setJavaScriptEnabled(true);
 
             articleBody.loadDataWithBaseURL("", "<meta name=\"viewport\" content=\"" +
                     "width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, " +

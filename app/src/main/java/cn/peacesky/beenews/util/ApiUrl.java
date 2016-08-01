@@ -8,6 +8,7 @@ import java.util.Random;
 public class ApiUrl {
     /**
      * 随机图片
+     * 添加Constant.IMG_SUFIX的后缀可以实现实时压缩
      */
     public static String randomImageUrl(int seed) {
         Random random = new Random(seed);

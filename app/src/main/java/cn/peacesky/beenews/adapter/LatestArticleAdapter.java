@@ -22,6 +22,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -49,9 +50,9 @@ import static cn.peacesky.beenews.ui.fragment.LatestArticleFragment.COLUMN_TYPE;
  */
 public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public final static int TYPE_MULTI_IMAGES = 3; // 多个图片的文章
-    public final static int TYPE_FOOTER = 4;//底部--往往是loading_more
-    public final static int TYPE_NORMAL = 2; // 正常的一条文章
+    private final static int TYPE_MULTI_IMAGES = 3; // 多个图片的文章
+    private final static int TYPE_FOOTER = 4;//底部--往往是loading_more
+    private final static int TYPE_NORMAL = 2; // 正常的一条文章
     private static final int TYPE_ROTATION = 1;
     //Handler 用到的参数值
     private static final int UPTATE_VIEWPAGER = 0;
@@ -71,9 +72,6 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
      * 注意这儿的 articleList 和原来的articleList 是同一个引用
      * fragment 的文章list增加了数据
      * 这儿的list也增加数据
-     *
-     * @param context
-     * @param articleList
      */
     public LatestArticleAdapter(Context context, List<ListArticleItem> articleList) {
         this.context = context;
@@ -120,10 +118,6 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
                 vh = new RotationViewHolder(view);
                 return vh;
         }
-
-//        //可以抛出异常，没有对应的View类型
-//        throw new RuntimeException("there is no type that matches the type " + viewType + " + make sure your using types correctly");
-
     }
 
     //返回最底的文章id，为了下拉刷新从该id开始加载
@@ -142,9 +136,6 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     /**
      * 当Item 超出屏幕后，就会重新执行onBindViewHolder
-     *
-     * @param holder
-     * @param position
      */
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
@@ -176,7 +167,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             newHolder.rcvArticleTitle.setText(article.getTitle());
             newHolder.rcvArticleDate.setText(article.getPublishDate());
             // 注意这个阅读次数是 int 类型，需要转化为 String 类型
-            newHolder.rcvArticleReadtimes.setText(article.getReadTimes() + "阅");
+            newHolder.rcvArticleReadtimes.setText(String.format(Locale.CHINESE, "%d 阅", article.getReadTimes()));
             newHolder.rcvArticleSummary.setText(article.getSummary());
 
             // 如果设置了回调，则设置点击事件
@@ -196,8 +187,8 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             newHolder.articlePic1.setImageURI(Uri.parse(imageUrls[0]));
             newHolder.articlePic2.setImageURI(Uri.parse(imageUrls[1]));
             newHolder.articlePic3.setImageURI(Uri.parse(imageUrls[2]));
-            newHolder.countPics.setText("图片: " + imageUrls.length);
-            newHolder.countRead.setText("浏览: " + article.getReadTimes());
+            newHolder.countPics.setText(String.format(Locale.CHINESE, "图片: %d", imageUrls.length));
+            newHolder.countRead.setText(String.format(Locale.CHINESE, "浏览: %d", article.getReadTimes()));
 
             // 如果设置了回调，则设置点击事件
             if (mOnItemClickLitener != null) {
@@ -282,37 +273,6 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
                 }
         );
 
-        //设置自动轮播图片，5s后执行，周期是5s
-
-        final Handler mHandler = new Handler() {
-            public void handleMessage(Message msg) {
-                switch (msg.what) {
-                    case UPTATE_VIEWPAGER:
-                        if (msg.arg1 >= Constant.COUNT_ROTATION) {
-                            vp.setCurrentItem(0);
-                        } else if (msg.arg1 != 0) {
-                            vp.setCurrentItem(msg.arg1);
-                        } else {
-                            //false 当从末页调到首页是，不显示翻页动画效果，
-                            vp.setCurrentItem(msg.arg1, false);
-                        }
-                        break;
-                }
-            }
-        };
-
-
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Message message = new Message();
-                message.what = UPTATE_VIEWPAGER;
-                message.arg1 = savedIndex + 1;
-                mHandler.sendMessage(message);
-            }
-        }, 5000, 5000);
-
-
         // then you can simply use the standard onClickListener ...
         vp.setOnClickListener(
                 new View.OnClickListener() {
@@ -330,6 +290,34 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
                 }
         );
 
+        // 处理轮播信息，执行轮播图片切换
+        final Handler mHandler = new Handler() {
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case UPTATE_VIEWPAGER:
+                        if (msg.arg1 >= Constant.COUNT_ROTATION) {
+                            vp.setCurrentItem(0);
+                        } else if (msg.arg1 != 0) {
+                            vp.setCurrentItem(msg.arg1);
+                        } else {
+                            //false 当从末页调到首页是，不显示翻页动画效果，
+                            vp.setCurrentItem(msg.arg1, false);
+                        }
+                        break;
+                }
+            }
+        };
+
+        // 从5000毫秒开始，每5000毫秒发送一次信息，轮播一次图片
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Message message = new Message();
+                message.what = UPTATE_VIEWPAGER;
+                message.arg1 = savedIndex + 1;
+                mHandler.sendMessage(message);
+            }
+        }, 5000, 5000);
 
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             //图片左右滑动时候，将当前页的圆点图片设为选中状态
@@ -407,7 +395,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
         @InjectView(R.id.tv_college_broadcast)
         TextView tvCollegeBroadcast;
 
-        public RotationViewHolder(View itemView) {
+        RotationViewHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
         }
@@ -426,7 +414,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
         @InjectView(R.id.rcv_article_summary)
         TextView rcvArticleSummary;
 
-        public ItemArticleViewHolder(View itemView) {
+        ItemArticleViewHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
         }
@@ -451,7 +439,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
         @InjectView(R.id.count_read)
         TextView countRead;
 
-        public MultiImagesViewHolder(View itemView) {
+        MultiImagesViewHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
         }
@@ -464,7 +452,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
         @InjectView(R.id.rcv_load_more)
         ProgressWheel rcvLoadMore;
 
-        public FooterViewHolder(View itemView) {
+        FooterViewHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
         }

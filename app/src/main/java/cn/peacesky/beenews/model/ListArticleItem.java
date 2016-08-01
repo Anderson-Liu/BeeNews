@@ -15,14 +15,13 @@ public class ListArticleItem {
     private String title;
     private String publishDate;
     private int readTimes;
-
     private String summary;
 
     public ListArticleItem() {
 
     }
 
-    public ListArticleItem(int id, String[] imageUrls, String title, String publishDate, int readTimes) {
+    ListArticleItem(int id, String[] imageUrls, String title, String publishDate, int readTimes) {
         this.id = id;
         this.imageUrls = imageUrls;
         this.title = title;

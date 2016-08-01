@@ -27,7 +27,6 @@ public class SettingActivity extends BaseActivity {
 
     }
 
-
     /**
      * 初始化Toolbar
      */
@@ -54,6 +53,4 @@ public class SettingActivity extends BaseActivity {
         }
         return false;
     }
-
-
 }

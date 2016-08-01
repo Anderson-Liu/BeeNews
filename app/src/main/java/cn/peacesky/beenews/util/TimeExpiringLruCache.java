@@ -1,6 +1,7 @@
 package cn.peacesky.beenews.util;
 
 /**
+ * 重写安卓的LruCache，实现缓存过期
  * @author: christopherperry
  */
 
@@ -8,6 +9,7 @@ import android.os.SystemClock;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class TimeExpiringLruCache<K, V> {
@@ -37,8 +39,8 @@ public class TimeExpiringLruCache<K, V> {
         }
         this.maxSize = maxSize;
         this.timeOut = timeOut;
-        this.map = new LinkedHashMap<K, V>(0, 0.75f, true);
-        this.validityTime = new HashMap<K, Long>(0, 0.75f);
+        this.map = new LinkedHashMap<>(0, 0.75f, true);
+        this.validityTime = new HashMap<>(0, 0.75f);
     }
 
     /**
@@ -167,7 +169,7 @@ public class TimeExpiringLruCache<K, V> {
      *
      * @return the previous value mapped by {@code key}.
      */
-    public final V remove(final K key) {
+    private final V remove(final K key) {
         if (key == null) {
             throw new NullPointerException("key == null");
         }
@@ -199,7 +201,7 @@ public class TimeExpiringLruCache<K, V> {
      * @param newValue the new value for {@code key}, if it exists. If non-null, this removal was caused by a {@link #put}. Otherwise it was caused by an
      *                 eviction or a {@link #remove}.
      */
-    protected void entryRemoved(final boolean evicted, final K key, final V oldValue, final V newValue) {
+    private void entryRemoved(final boolean evicted, final K key, final V oldValue, final V newValue) {
     }
 
     /**
@@ -214,7 +216,7 @@ public class TimeExpiringLruCache<K, V> {
      * discarded. This can occur when multiple threads request the same key at the same time (causing multiple values to be created), or when one
      * thread calls {@link #put} while another is creating a value for the same key.
      */
-    protected V create(final K key) {
+    private V create(final K key) {
         return null;
     }
 
@@ -233,7 +235,7 @@ public class TimeExpiringLruCache<K, V> {
      * <p>
      * An entry's size must not change while it is in the cache.
      */
-    protected int sizeOf(final K key, final V value) {
+    private int sizeOf(final K key, final V value) {
         return 1;
     }
 
@@ -299,14 +301,14 @@ public class TimeExpiringLruCache<K, V> {
      * Returns a copy of the current contents of the cache, ordered from least recently accessed to most recently accessed.
      */
     public synchronized final Map<K, V> snapshot() {
-        return new LinkedHashMap<K, V>(map);
+        return new LinkedHashMap<>(map);
     }
 
     @Override
     public synchronized final String toString() {
         final int accesses = hitCount + missCount;
         final int hitPercent = accesses != 0 ? (100 * hitCount / accesses) : 0;
-        return String.format("LruCache[maxSize=%d,hits=%d,misses=%d,hitRate=%d%%]",
+        return String.format(Locale.CHINESE, "LruCache[maxSize=%d,hits=%d,misses=%d,hitRate=%d%%]",
                 maxSize, hitCount, missCount, hitPercent);
     }
 }

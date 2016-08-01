@@ -28,7 +28,6 @@ import cn.peacesky.beenews.util.ColumnName;
 public class ArticleFragmentContainer extends Fragment {
 
     private static final String PARAM = "param";
-
     private static final String LOG = "PAGER_LOG";
 
     @InjectView(R.id.tablayout_article)
@@ -60,7 +59,7 @@ public class ArticleFragmentContainer extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frag_first_container, null);
+        View view = inflater.inflate(R.layout.frag_first_container, container);
         mAct = getActivity();
         //注入
         ButterKnife.inject(this, view);
@@ -112,9 +111,9 @@ public class ArticleFragmentContainer extends Fragment {
     /**
      * 适配器
      */
-    class ArticleFragmentAdapter extends FragmentStatePagerAdapter {
+    private class ArticleFragmentAdapter extends FragmentStatePagerAdapter {
 
-        public ArticleFragmentAdapter(FragmentManager fm) {
+        ArticleFragmentAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -144,7 +143,7 @@ public class ArticleFragmentContainer extends Fragment {
     }
 
     // 栏目切换动画 Depth Page Transformer
-    public class DepthPageTransformer implements ViewPager.PageTransformer {
+    private class DepthPageTransformer implements ViewPager.PageTransformer {
         private static final float MIN_SCALE = 0.75f;
 
         public void transformPage(View view, float position) {

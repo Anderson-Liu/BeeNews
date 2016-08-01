@@ -33,7 +33,6 @@ public class SettingFragment extends PreferenceFragment {
              */
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-
                 boolean checked = Boolean.valueOf(newValue.toString());
                 PrefUtils.setSaveNetMode(checked);
                 Logger.d("Pref " + preference.getKey() + " changed to " + newValue.toString());

@@ -14,6 +14,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -32,9 +33,9 @@ import cn.peacesky.beenews.util.OnItemClickLitener;
 public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
-    public final static int TYPE_MULTI_IMAGES = 2; // 多个图片的文章
-    public final static int TYPE_FOOTER = 3;//底部--往往是loading_more
-    public final static int TYPE_NORMAL = 1; // 正常的一条文章
+    private final static int TYPE_MULTI_IMAGES = 2; // 多个图片的文章
+    private final static int TYPE_FOOTER = 3;//底部--往往是loading_more
+    private final static int TYPE_NORMAL = 1; // 正常的一条文章
     //新闻列表
     private List<ListArticleItem> articleList;
     //context
@@ -47,7 +48,7 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
     public OriginArticleAdapter(Context context, List<ListArticleItem> articleList) {
         this.context = context;
         if (articleList == null) {
-            this.articleList = new ArrayList<ListArticleItem>();
+            this.articleList = new ArrayList<>();
         } else {
             this.articleList = articleList;
         }
@@ -56,10 +57,6 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     /**
      * 根据不同的类别返回不同的ViewHolder
-     *
-     * @param parent
-     * @param viewType
-     * @return
      */
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -111,7 +108,8 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
                 newHolder.rcvArticlePhoto.setImageURI(Uri.parse(ApiUrl.randomImageUrl(article.getId()) + Constant.IMG_SUFIX));
             }
             //注意这个阅读次数是 int 类型，需要转化为 String 类型
-            newHolder.rcvArticleReadtimes.setText("浏览: " + article.getReadTimes());
+            int readTime = article.getReadTimes();
+            newHolder.rcvArticleReadtimes.setText(String.format(Locale.CHINESE, "浏览: %d", readTime));
 
             newHolder.rcvArticleSummary.setText(article.getSummary());
             // 如果设置了回调，则设置点击事件
@@ -130,8 +128,8 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             newHolder.articlePic1.setImageURI(Uri.parse(imageUrls[0]));
             newHolder.articlePic2.setImageURI(Uri.parse(imageUrls[1]));
             newHolder.articlePic3.setImageURI(Uri.parse(imageUrls[2]));
-            newHolder.countPics.setText("图片: " + imageUrls.length);
-            newHolder.countRead.setText("浏览: " + article.getReadTimes());
+            newHolder.countPics.setText(String.format(Locale.CHINESE, "图片: %d", imageUrls.length));
+            newHolder.countRead.setText(String.format(Locale.CHINESE, "浏览: %d", article.getReadTimes()));
 
             // 如果设置了回调，则设置点击事件
             if (mOnItemClickLitener != null) {
@@ -144,7 +142,6 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
                 });
             }
         }
-
     }
 
 
@@ -153,9 +150,6 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
      * null 作为是上拉的 progressBar 的标记
      * http://android-pratap.blogspot.com/2015/06/endless-recyclerview-with-progress-bar.html
      * 参看的这篇文章
-     *
-     * @param position
-     * @return
      */
     @Override
     public int getItemViewType(int position) {
@@ -168,7 +162,6 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
         } else {
             return TYPE_NORMAL;
         }
-
     }
 
     @Override
@@ -179,7 +172,6 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             return 0;
         }
     }
-
 
     public int getBottomArticleId() {
         if (articleList == null || articleList.size() == 0)
@@ -212,7 +204,7 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
         @InjectView(R.id.rcv_article_summary)
         TextView rcvArticleSummary;
 
-        public ItemArticleViewHolder(View itemView) {
+        ItemArticleViewHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
         }
@@ -222,7 +214,6 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
      * 大于3 张图片使用的ViewHolder
      */
     class MultiImagesViewHolder extends RecyclerView.ViewHolder {
-
 
         @InjectView(R.id.article_title)
         TextView articleTitle;
@@ -237,7 +228,7 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
         @InjectView(R.id.count_read)
         TextView countRead;
 
-        public MultiImagesViewHolder(View itemView) {
+        MultiImagesViewHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
         }
@@ -250,11 +241,9 @@ public class OriginArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
         @InjectView(R.id.rcv_load_more)
         ProgressWheel rcvLoadMore;
 
-        public FooterViewHolder(View itemView) {
+        FooterViewHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
         }
     }
-
-
 }

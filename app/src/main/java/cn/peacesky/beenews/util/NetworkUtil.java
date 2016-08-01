@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import cn.peacesky.beenews.app.BeeNewsApp;
 
 /**
+ * 监测网络，移动网络和WIFI是否开启
  * Created by tomchen on 2/28/16.
  */
 public class NetworkUtil {
@@ -17,7 +18,6 @@ public class NetworkUtil {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo[] netInfos = cm.getAllNetworkInfo();
         for (NetworkInfo net : netInfos) {
-
             String type = net.getTypeName();
             if (type.equalsIgnoreCase("WIFI")) {
                 if (net.isConnected()) {
