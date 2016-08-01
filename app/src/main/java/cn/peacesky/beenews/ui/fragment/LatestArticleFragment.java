@@ -177,8 +177,10 @@ public class LatestArticleFragment extends Fragment {
             @Override
             public void run() {
                 // 启动刷新动画
-                swipeRefreshLayout.setRefreshing(true);
-                new MoreArticleTask().execute(mAdapter.getTopOriginArticleId());
+                if (swipeRefreshLayout != null) {
+                    swipeRefreshLayout.setRefreshing(true);
+                    new MoreArticleTask().execute(mAdapter.getTopOriginArticleId());
+                }
             }
         });
     }

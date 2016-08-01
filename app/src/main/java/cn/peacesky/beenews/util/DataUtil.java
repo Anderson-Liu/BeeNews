@@ -1,7 +1,5 @@
 package cn.peacesky.beenews.util;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.util.Log;
 
 import com.orhanobut.logger.Logger;
@@ -28,20 +26,13 @@ public class DataUtil {
 
     OkHttpClient client = new OkHttpClient();
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     String run(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .addHeader("Authorization", "Basic YW5kZXJzb246YW5kZXJzb24=")
                 .build();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            try (Response response = client.newCall(request).execute()) {
-                return response.body().string();
-            }
-        } else {
-            Response response = client.newCall(request).execute();
-            return response.body().string();
-        }
+        Response response = client.newCall(request).execute();
+        return response.body().string();
     }
 
 
