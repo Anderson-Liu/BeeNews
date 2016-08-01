@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "cn.peacesky.beenews"
         minSdkVersion 16
-        //minSdkVersion 17
+        // minSdkVersion 17
         // minSdkVersion 19
         targetSdkVersion 22
         versionCode 7

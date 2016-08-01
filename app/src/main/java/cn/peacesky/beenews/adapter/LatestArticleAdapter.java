@@ -3,6 +3,8 @@ package cn.peacesky.beenews.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +22,8 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -51,22 +55,16 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int TYPE_ROTATION = 1;
     //Handler 用到的参数值
     private static final int UPTATE_VIEWPAGER = 0;
-
+    Timer timer = new Timer();
     //新闻列表
     private List<ListArticleItem> articleList;
-
     //设置当前 第几个图片 被选中
     private int currentIndex = 0;
-
     //context
     private Context context;
-
     private LayoutInflater mLayoutInflater;
-
     private ImageView[] mCircleImages;//底部只是当前页面的小圆点
-
     private OnItemClickLitener mOnItemClickLitener;//点击 RecyclerView 中的 Item
-
 
     /**
      * 注意这儿的 articleList 和原来的articleList 是同一个引用
@@ -283,6 +281,37 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
                     }
                 }
         );
+
+        //设置自动轮播图片，5s后执行，周期是5s
+
+        final Handler mHandler = new Handler() {
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case UPTATE_VIEWPAGER:
+                        if (msg.arg1 != 0) {
+                            vp.setCurrentItem(msg.arg1);
+                        } else {
+                            //false 当从末页调到首页是，不显示翻页动画效果，
+                            vp.setCurrentItem(msg.arg1, false);
+                        }
+                        break;
+                }
+            }
+        };
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Message message = new Message();
+                message.what = UPTATE_VIEWPAGER;
+                if (currentIndex == headerArticles.size() - 1) {
+                    currentIndex = -1;
+                }
+                message.arg1 = currentIndex + 1;
+                mHandler.sendMessage(message);
+            }
+        }, 6000, 6000);
+
 
         // then you can simply use the standard onClickListener ...
         vp.setOnClickListener(
