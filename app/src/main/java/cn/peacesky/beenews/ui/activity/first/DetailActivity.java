@@ -35,6 +35,8 @@ import cn.peacesky.beenews.util.CacheUtil;
 import cn.peacesky.beenews.util.Constant;
 import cn.peacesky.beenews.util.DataUtil;
 
+import static android.webkit.WebSettings.LOAD_CACHE_ELSE_NETWORK;
+
 /**
  * Created by anderson on 2/23/16.
  */
@@ -66,7 +68,6 @@ public class DetailActivity extends AppCompatActivity {
     private int read;
     private DataUtil dataUtil = new DataUtil();
 
-    // TODO: 7/29/16 对从通知栏传递过来的参数进行对象构建
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +91,7 @@ public class DetailActivity extends AppCompatActivity {
                 articleID = Integer.parseInt(object.getString("aid"));
                 Logger.json(object.toString());
             } catch (JSONException e) {
-                e.printStackTrace();
+                Logger.e(e, "JSONException");
                 // 如果推送中没有数据，打开默认的文章
                 columnType = Constant.NOTIFI_NOT_FOUND_TYPE;
                 articleID = Constant.NOTIFI_NOT_FOUND_ID;
@@ -200,7 +201,13 @@ public class DetailActivity extends AppCompatActivity {
                 } else {
                     articleImage.setImageURI(Uri.parse(ApiUrl.randomImageUrl(articleItem.getId()) + Constant.IMG_SUFIX));
                 }
-
+                articleBody.getSettings().setCacheMode(LOAD_CACHE_ELSE_NETWORK);
+                articleBody.getSettings().setAllowContentAccess(false);
+                articleBody.getSettings().setSavePassword(false);
+                // 防范远程命令执行，http://jaq.alibaba.com/gc/devcenter.htm?helpid=75
+                articleBody.removeJavascriptInterface("searchBoxJavaBridge_");
+                articleBody.removeJavascriptInterface("accessibilityTraversal");
+                articleBody.removeJavascriptInterface("accessibility");
                 articleBody.loadDataWithBaseURL("", "<meta name=\"viewport\" content=\"" +
                         "width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, " +
                         "user-scalable=no\" />" + "<style>img{display: inline;height: auto;max-width: 100%;}" +

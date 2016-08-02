@@ -64,7 +64,7 @@ public class DataUtil {
             listArticleItem.setPublishDate(publishDate);
             listArticleItem.setReadTimes(readTime);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.e(e, "JSONException");
         }
         return listArticleItem;
     }
@@ -96,7 +96,7 @@ public class DataUtil {
             articleItem.setPublishDate(publishDate);
             articleItem.setReadTimes(readTime);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Logger.e(e, "JSONException");
         }
         return articleItem;
     }

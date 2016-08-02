@@ -624,6 +624,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/SecurityGuardSDK-external-release-5.1.38/jars/classes.jar"
+        jumboMode="false"
+        optimize="false"
+        revision="23.0.3"
+        sha1="d2ba2a61c54a48427ff4f98791ed69a0fa1ab4f1">
+        <dex dex="/usr/local/Code/android/BeeNews/app/build/intermediates/pre-dexed/debug/intermediates-exploded-aar-SecurityGuardSDK-external-release-5.1.38_20ac6f9ea8867e642d48831d434961c51b577a6e.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/usr/local/Code/android/BeeNews/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.2.1/jars/classes.jar"
         jumboMode="false"
         optimize="false"

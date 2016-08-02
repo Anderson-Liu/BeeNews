@@ -19,3 +19,8 @@
 #-keep class com.newrelic.** { *; }
 #-dontwarn com.newrelic.**
 #-keepattributes Exceptions, Signature, InnerClasses
+-keep class com.taobao.securityjni.**{*;}
+-keep class com.taobao.wireless.security.**{*;}
+-keep class com.ut.secbody.**{*;}
+-keep class com.taobao.dp.**{*;}
+-keep class com.alibaba.wireless.security.**{*;}

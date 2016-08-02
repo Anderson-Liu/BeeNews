@@ -229,7 +229,7 @@ public class LatestArticleFragment extends Fragment {
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Logger.e(e, "InterruptedException");
             }
 
             List<ListArticleItem> data = new ArrayList<>();
@@ -305,7 +305,7 @@ public class LatestArticleFragment extends Fragment {
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Logger.e(e, "InterruptedException");
             }
             //只有第一次需要加载头部的轮播图片
             //下拉刷新时候不加轮播图片
