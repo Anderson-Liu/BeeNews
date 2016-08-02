@@ -81,15 +81,21 @@ public class DetailActivity extends AppCompatActivity {
         if (isFromJpush) {
             Bundle bundle = getIntent().getExtras();
             //从通知栏的推送跳转过来
-            title = bundle.getString(JPushInterface.EXTRA_ALERT);
+            title = bundle.getString(JPushInterface.EXTRA_ALERT, "");
             String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
+            JSONObject object = null;
+            try {
+                object = new JSONObject(extras);
+                columnType = Integer.parseInt(object.getString("type"));
+                articleID = Integer.parseInt(object.getString("aid"));
+                Logger.json(object.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+                // 如果推送中没有数据，打开默认的文章
+                columnType = Constant.NOTIFI_NOT_FOUND_TYPE;
+                articleID = Constant.NOTIFI_NOT_FOUND_ID;
+            }
             Logger.d("获得的extras" + extras);
-            ArticleItem article = new ArticleItem();
-            Logger.d("通过通知建立的article" + article);
-            columnType = article.getType();
-            articleID = article.getId();
-            // date = article.getPublishDate();
-            // read = article.getReadTimes();
         } else {
             //从列表跳转过来
             columnType = intent.getIntExtra(LatestArticleFragment.COLUMN_TYPE, 0);
@@ -98,7 +104,6 @@ public class DetailActivity extends AppCompatActivity {
             date = intent.getStringExtra(LatestArticleFragment.ARTICLE_DATE);
             read = intent.getIntExtra(LatestArticleFragment.ARTICLE_READ, 452);
         }
-
         new GetArticleTask().execute();
     }
 
@@ -129,9 +134,13 @@ public class DetailActivity extends AppCompatActivity {
                 result = dataUtil.request(url);
                 JSONObject resultJson = new JSONObject(result);
                 JSONArray items = (JSONArray) resultJson.get("_items");
-                JSONObject item = items.getJSONObject(0);
-                articleItem = dataUtil.parseJson2Article(item);
-                CacheUtil.detailArticleCache.put(articleID, articleItem);
+                if (items.length() != 0) {
+                    JSONObject item = items.getJSONObject(0);
+                    articleItem = dataUtil.parseJson2Article(item);
+                    CacheUtil.detailArticleCache.put(articleID, articleItem);
+                } else {
+                    getArticleDetail(Constant.NOT_FOUND_ID, Constant.NO_FOUND_TYPE);
+                }
             } catch (JSONException e) {
                 Logger.e(Arrays.toString(e.getStackTrace()));
             }
@@ -176,25 +185,31 @@ public class DetailActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(ArticleItem articleItem) {
             super.onPostExecute(articleItem);
-            detailSource.setText(String.format(Locale.CHINESE, "来源：%s", articleItem.getSource()));
-            collapsingToolbar.setTitle(articleItem.getTitle());
-            detailTitle.setText(articleItem.getTitle());
-            detailDate.setText(articleItem.getPublishDate());
-            detailRead.setText(String.format(Locale.CHINESE, "%d 浏览", articleItem.getReadTimes()));
-            String[] imageUrls = articleItem.getImageUrls();
+            if (articleItem != null) {
+                detailSource.setText(String.format(Locale.CHINESE, "来源：%s", articleItem.getSource()));
+                collapsingToolbar.setTitle(articleItem.getTitle());
+                detailTitle.setText(articleItem.getTitle());
+                detailDate.setText(articleItem.getPublishDate());
+                detailRead.setText(String.format(Locale.CHINESE, "%d 浏览", articleItem.getReadTimes()));
+                String[] imageUrls = articleItem.getImageUrls();
 
-            //当图片小于3张时候 选取第1张图片
-            if (!imageUrls[0].isEmpty()) {
-                articleImage.setImageURI(Uri.parse(Constant.BUCKET_HOST_NAME + imageUrls[0] + Constant.IMG_SUFIX));
-                Logger.d(Constant.BUCKET_HOST_NAME + imageUrls[0] + Constant.IMG_SUFIX);
+                //当图片小于3张时候 选取第1张图片
+                if (!imageUrls[0].isEmpty()) {
+                    articleImage.setImageURI(Uri.parse(Constant.BUCKET_HOST_NAME + imageUrls[0] + Constant.IMG_SUFIX));
+                    Logger.d(Constant.BUCKET_HOST_NAME + imageUrls[0] + Constant.IMG_SUFIX);
+                } else {
+                    articleImage.setImageURI(Uri.parse(ApiUrl.randomImageUrl(articleItem.getId()) + Constant.IMG_SUFIX));
+                }
+
+                articleBody.loadDataWithBaseURL("", "<meta name=\"viewport\" content=\"" +
+                        "width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, " +
+                        "user-scalable=no\" />" + "<style>img{display: inline;height: auto;max-width: 100%;}" +
+                        "</style>" + articleItem.getBody(), "text/html", "UTF-8", "");
             } else {
-                articleImage.setImageURI(Uri.parse(ApiUrl.randomImageUrl(articleItem.getId()) + Constant.IMG_SUFIX));
+                articleID = Constant.NOT_FOUND_ID;
+                columnType = Constant.NO_FOUND_TYPE;
+                new GetArticleTask().execute();
             }
-
-            articleBody.loadDataWithBaseURL("", "<meta name=\"viewport\" content=\"" +
-                    "width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, " +
-                    "user-scalable=no\" />" + "<style>img{display: inline;height: auto;max-width: 100%;}" +
-                    "</style>" + articleItem.getBody(), "text/html", "UTF-8", "");
         }
     }
 }

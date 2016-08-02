@@ -33,9 +33,12 @@ public class DataUtil {
                 .addHeader("Authorization", "Basic YW5kZXJzb246YW5kZXJzb24=")
                 .build();
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        if (response.isSuccessful()) {
+            return response.body().string();
+        } else {
+            return null;
+        }
     }
-
 
     /**
      * 把Json对象解析为ListArticleItem

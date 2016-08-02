@@ -7,11 +7,12 @@ android {
     buildToolsVersion '23.0.3'
     defaultConfig {
         applicationId "cn.peacesky.beenews"
-        minSdkVersion 16
-        // minSdkVersion 17
+        // API level 16及以下存在WebView远程代码执行漏洞
+        // minSdkVersion 16
+        minSdkVersion 17
         // minSdkVersion 19
         targetSdkVersion 22
-        versionCode 9
+        versionCode 10
         versionName "1.0"
     }
     sourceSets {
