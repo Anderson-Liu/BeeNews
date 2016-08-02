@@ -14,6 +14,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.alibaba.wireless.security.jaq.JAQException;
+import com.alibaba.wireless.security.jaq.SecurityInit;
+import com.orhanobut.logger.Logger;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -59,11 +62,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         final int expireTime = 1200000;
         CacheUtil.detailArticleCache = new TimeExpiringLruCache<>(cacheSize, expireTime);
         CacheUtil.simpleListCache = new TimeExpiringLruCache<>(cursorCacheSize, expireTime);
+        initAliSec();
         initToolbar();
         // 启动主页新闻的fragment_container
         FragmentManager fm = getSupportFragmentManager();
         ArticleFragmentContainer container = new ArticleFragmentContainer();
         fm.beginTransaction().add(R.id.fragment_container, container).commit();
+
     }
 
     /**
@@ -73,6 +78,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    private void initAliSec() {
+        try {
+            SecurityInit.Initialize(getApplicationContext());
+        } catch (JAQException e) {
+            Logger.e(e, "JAQException");
+        }
     }
 
     /**

@@ -3,6 +3,8 @@ package cn.peacesky.beenews.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.alibaba.wireless.security.jaq.SecurityStorage;
+
 import cn.peacesky.beenews.app.BeeNewsApp;
 
 /**
@@ -20,7 +22,13 @@ public class PrefUtils {
 
     private static final String PRE_NAME = "cn.peacesky.beenews";
 
+    private static SecurityStorage getSecureStorage() {
+        SecurityStorage securityStorage = new SecurityStorage(BeeNewsApp.getContext());
+        return securityStorage;
+    }
+
     private static SharedPreferences getSharedPreferences() {
+
         return BeeNewsApp.getContext()
                 .getSharedPreferences(PRE_NAME, Context.MODE_PRIVATE);
     }

@@ -133,18 +133,20 @@ public class DetailActivity extends AppCompatActivity {
             String result;
             try {
                 result = dataUtil.request(url);
-                JSONObject resultJson = new JSONObject(result);
-                JSONArray items = (JSONArray) resultJson.get("_items");
-                if (items.length() != 0) {
+                if (result != null) {
+                    JSONObject resultJson = new JSONObject(result);
+                    JSONArray items = (JSONArray) resultJson.get("_items");
                     JSONObject item = items.getJSONObject(0);
                     articleItem = dataUtil.parseJson2Article(item);
                     CacheUtil.detailArticleCache.put(articleID, articleItem);
                 } else {
+                    // 找不到文章，显示错误提示文章
                     getArticleDetail(Constant.NOT_FOUND_ID, Constant.NO_FOUND_TYPE);
                 }
             } catch (JSONException e) {
                 Logger.e(Arrays.toString(e.getStackTrace()));
             }
+
             Logger.d("当前lruCache中的内容：" + CacheUtil.detailArticleCache);
             if (articleItem == null) {
                 Logger.d("根据type: " + type + " , 和AID: " + articleID + "找不到结果。" + articleItem);
