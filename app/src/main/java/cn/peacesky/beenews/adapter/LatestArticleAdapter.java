@@ -22,7 +22,6 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -167,7 +166,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             newHolder.rcvArticleTitle.setText(article.getTitle());
             newHolder.rcvArticleDate.setText(article.getPublishDate());
             // 注意这个阅读次数是 int 类型，需要转化为 String 类型
-            newHolder.rcvArticleReadtimes.setText(String.format(Locale.CHINESE, "%d 阅", article.getReadTimes()));
+            newHolder.rcvArticleReadtimes.setText(String.format(Constant.LOCAL, "%d 阅", article.getReadTimes()));
             newHolder.rcvArticleSummary.setText(article.getSummary());
 
             // 如果设置了回调，则设置点击事件
@@ -187,8 +186,8 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             newHolder.articlePic1.setImageURI(Uri.parse(imageUrls[0]));
             newHolder.articlePic2.setImageURI(Uri.parse(imageUrls[1]));
             newHolder.articlePic3.setImageURI(Uri.parse(imageUrls[2]));
-            newHolder.countPics.setText(String.format(Locale.CHINESE, "图片: %d", imageUrls.length));
-            newHolder.countRead.setText(String.format(Locale.CHINESE, "浏览: %d", article.getReadTimes()));
+            newHolder.countPics.setText(String.format(Constant.LOCAL, "图片: %d", imageUrls.length));
+            newHolder.countRead.setText(String.format(Constant.LOCAL, "浏览: %d", article.getReadTimes()));
 
             // 如果设置了回调，则设置点击事件
             if (mOnItemClickLitener != null) {

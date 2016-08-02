@@ -22,7 +22,6 @@ import com.orhanobut.logger.Logger;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -145,6 +144,7 @@ public class OriginalArticleFragment extends Fragment {
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int totalItemCount = layoutManager.getItemCount();
                 int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
+                // 如果当前文章到达底部倒数第三篇，自动获取更多文章
                 if (!loading && totalItemCount < (lastVisibleItem + Constant.VISIBLE_THRESHOLD)) {
                     new ArticleTask(mActivity).execute(totalItemCount);
                     loading = true;
@@ -201,7 +201,7 @@ public class OriginalArticleFragment extends Fragment {
     private List<ListArticleItem> getMoreById(int type, int moreThan) {
 
         String preUrl = Constant.EVE_HOST + "/%s?where={%s:{%s:%d}, %s:%d}&sort=-publishDate";
-        String url = String.format(Locale.CHINESE, preUrl, Constant.SIMP_COLLECTION,
+        String url = String.format(Constant.LOCAL, preUrl, Constant.SIMP_COLLECTION,
                 "\"aid\"", "\"$gt\"", moreThan, "\"type\"", type);
 
         String resultBody = dataUtil.request(url);
@@ -220,17 +220,18 @@ public class OriginalArticleFragment extends Fragment {
      */
     private List<ListArticleItem> getArticleList(int type, int offset) {
         String preUrl = Constant.EVE_HOST + "/%s?where={%s: %d}&&sort=-publishDate";
-        String url = String.format(Locale.CHINESE, preUrl, Constant.SIMP_COLLECTION, "\"type\"", type);
+        String url = String.format(Constant.LOCAL, preUrl, Constant.SIMP_COLLECTION, "\"type\"", type);
         String resultBody = dataUtil.request(url);
         List<ListArticleItem> list = dataUtil.getListFromResult(resultBody);
-        if (list.size() == offset - 1) {
+        int listSize = list.size();
+        // 偏移量已经到最后一篇文章
+        if (listSize <= offset) {
+            return new ArrayList<>();
+        } else if (0 == listSize) {
+            Logger.d("JSON没获得数据");
             return new ArrayList<>();
         }
-
         list = list.subList(offset - 1, list.size() - 1);
-        if (0 == list.size()) {
-            Logger.d("JSON没获得数据");
-        }
         return list;
     }
 

@@ -20,7 +20,6 @@ import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -191,7 +190,7 @@ public class LatestArticleFragment extends Fragment {
     private List<ListArticleItem> getMoreById(int moreThan) {
         // 构造RESTful API
         String preUrl = Constant.EVE_HOST + "/%s?where={%s:{%s:%d}}&&sort=-publishDate";
-        String url = String.format(Locale.CHINESE, preUrl, Constant.SIMP_COLLECTION
+        String url = String.format(Constant.LOCAL, preUrl, Constant.SIMP_COLLECTION
                 , "\"aid\"", "\"$gt\"", moreThan);
         String resultBody = dataUtil.request(url);
         List<ListArticleItem> list = dataUtil.getListFromResult(resultBody);
@@ -312,9 +311,7 @@ public class LatestArticleFragment extends Fragment {
             if (mArticleList.size() == 0) {
                 data.addAll(getRotationItem());
             }
-
             data.addAll(getArticleList(params[0]));
-
             return data;
         }
 
@@ -345,9 +342,7 @@ public class LatestArticleFragment extends Fragment {
 
                 mArticleList.addAll(moreArticles);
                 mAdapter.notifyDataSetChanged();
-
                 loading = false;
-//            mArticleList.addAll(moreArticles);
             }
         }
     }

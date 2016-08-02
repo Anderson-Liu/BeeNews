@@ -21,7 +21,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
-import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -128,7 +127,7 @@ public class DetailActivity extends AppCompatActivity {
         ArticleItem articleItem = CacheUtil.detailArticleCache.get(articleID);
         if (null == articleItem) {
             String preUrl = Constant.EVE_HOST + "/%s?where={%s:%d, %s:%d}";
-            String url = String.format(Locale.CHINESE, preUrl, Constant.FULL_COLLECTION,
+            String url = String.format(Constant.LOCAL, preUrl, Constant.FULL_COLLECTION,
                     "\"type\"", type, "\"aid\"", articleID);
             String result;
             try {
@@ -189,11 +188,11 @@ public class DetailActivity extends AppCompatActivity {
         protected void onPostExecute(ArticleItem articleItem) {
             super.onPostExecute(articleItem);
             if (articleItem != null) {
-                detailSource.setText(String.format(Locale.CHINESE, "来源：%s", articleItem.getSource()));
+                detailSource.setText(String.format(Constant.LOCAL, "来源：%s", articleItem.getSource()));
                 collapsingToolbar.setTitle(articleItem.getTitle());
                 detailTitle.setText(articleItem.getTitle());
                 detailDate.setText(articleItem.getPublishDate());
-                detailRead.setText(String.format(Locale.CHINESE, "%d 浏览", articleItem.getReadTimes()));
+                detailRead.setText(String.format(Constant.LOCAL, "%d 浏览", articleItem.getReadTimes()));
                 String[] imageUrls = articleItem.getImageUrls();
 
                 //当图片小于3张时候 选取第1张图片

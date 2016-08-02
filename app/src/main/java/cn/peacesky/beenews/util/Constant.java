@@ -1,5 +1,7 @@
 package cn.peacesky.beenews.util;
 
+import java.util.Locale;
+
 /*
  * Created by anderson on 7/21/16.
  */
@@ -21,6 +23,7 @@ public class Constant {
     public static final int NOTIFI_NOT_FOUND_ID = 0;
     public static final int NOT_FOUND_ID = 1;
     public static final int NO_FOUND_TYPE = 0;
+    public static final Locale LOCAL = Locale.CHINESE;
     // 七牛云随机图片域名
     static final String RANDOM_IMAGE = "http://7xriwb.com1.z0.glb.clouddn.com/";
     // 七牛云中随机图片的总数
