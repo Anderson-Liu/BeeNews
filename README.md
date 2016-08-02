@@ -11,7 +11,9 @@
  - 使用[okhttp3](https://github.com/square/okhttp)执行RESTful API http请求
  - 使用orhanobut的[logger](https://github.com/orhanobut/logger)改进日志输出
  - [阿里icon平台](http://www.iconfont.cn/)
- - 使用[阿里云测移动质量中心](https://mqc.aliyun.com/)进行自动化测试
+ - 使用[阿里云测移动质量中心](https://mqc.aliyun.com/), [腾讯优测](http://utest.qq.com/)进行自动化测试
+ - 使用[阿里聚安全](http://jaq.alibaba.com/),[360加固保](http://jiagu.360.cn/)进行漏洞监测，应用加固等。
+
 
 ## 后端
   - 采用[Okhttp](https://github.com/square/okhttp/) 构建网络爬虫
