@@ -34,6 +34,7 @@
         android:visibility="invisible" />
 
     <Button
+        android:id="@+id/moni_btn"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -48,6 +49,7 @@
         android:visibility="invisible" />
 
     <Button
+        android:id="@+id/search_btn"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -61,7 +63,7 @@
         android:visibility="invisible" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/eval_btn"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

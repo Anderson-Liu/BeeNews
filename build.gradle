@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.0-alpha5'
+        classpath 'com.android.tools.build:gradle:2.2.0'
     }
 }
 
@@ -18,3 +18,10 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+/*
+ext {
+    compileSdkVersion = 22
+    buildToolsVersion = "23.0.3"
+    supportV4 = 'com.android.support:support-v4:21.0.3'
+}*/

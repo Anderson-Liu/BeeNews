@@ -64,7 +64,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         FragmentManager fm = getSupportFragmentManager();
         ArticleFragmentContainer container = new ArticleFragmentContainer();
         fm.beginTransaction().add(R.id.fragment_container, container).commit();
-
     }
 
     /**
@@ -210,6 +209,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         startActivity(new Intent(MainActivity.this, clazz));
         return true;
     }
+
 
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
