@@ -1,6 +1,13 @@
 package cn.peacesky.beenews.model;
 
+import com.orhanobut.logger.Logger;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * 供listview使用的文章类
@@ -104,6 +111,19 @@ public class ListArticleItem {
     }
 
     public String getPublishDate() {
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        TimeZone gmtTime = TimeZone.getTimeZone("GMT-16:00");
+        df.setTimeZone(gmtTime);
+        Date date = null;
+        try {
+            date = df.parse(publishDate);
+        } catch (ParseException e) {
+            Logger.e(e, "ParseException");
+        }
+        if (null != date) {
+            publishDate = date.toString();
+            publishDate = publishDate.split("GMT")[0];
+        }
         return publishDate;
     }
 

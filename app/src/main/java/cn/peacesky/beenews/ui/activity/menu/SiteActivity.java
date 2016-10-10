@@ -54,7 +54,7 @@ public class SiteActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
 
                 result.setText("  您的选择是：" + ((TextView) view).getText() + "\n"
-                        + "这是第" + spinner.getSelectedItemPosition() + "个城市" + position);
+                        + "这是第" + spinner.getSelectedItemPosition() + "个城市");
                 goto_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
