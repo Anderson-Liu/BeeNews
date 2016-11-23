@@ -59,7 +59,7 @@ dependencies {
     testCompile 'com.squareup.okhttp3:mockwebserver:3.4.1'
     compile 'com.github.jorgecastilloprz:fabprogresscircle:1.01@aar'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
-    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-appindexing:9.2.1'
     compile files('libs/jpush-android-2.1.7.jar')
     compile 'com.squareup.okhttp3:okhttp:3.4.1'

@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="fabprogresscircle-1.01">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.jorgecastilloprz/fabprogresscircle/1.01/res" />
       <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.jorgecastilloprz/fabprogresscircle/1.01/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.jorgecastilloprz/fabprogresscircle/1.01/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

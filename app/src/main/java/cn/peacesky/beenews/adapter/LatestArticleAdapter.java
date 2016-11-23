@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -247,30 +249,53 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
             llBottom.addView(mCircleImages[i]);
         }
 
+        final GestureDetector gesture = new GestureDetector(context,
+                new GestureDetector.SimpleOnGestureListener() {
+
+                    @Override
+                    public boolean onDown(MotionEvent e) {
+                        Log.i("finger down", "touch down");
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onSingleTapUp(MotionEvent e) {
+                        vp.performClick();
+                        Log.i("single tapup", "single tapup");
+                        return super.onSingleTapUp(e);
+                    }
+
+                    @Override
+                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                                           float velocityY) {
+                        Log.i("fling", "onFling has been called!");
+                        final int SWIPE_MIN_DISTANCE = 120;
+                        try {
+                            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE) {
+                                Log.i("fling", "Right to Left");
+                            } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE) {
+                                Log.i("fling", "Left to Right");
+                            }
+                        } catch (Exception e) {
+                            // nothing
+                        }
+                        return super.onFling(e1, e2, velocityX, velocityY);
+                    }
+                });
+
+
         // 没办法直接onClickListener,只能变相通过onTouchListener的按键动作来判断是滑动还是点击
         // 如果是点击，触发点击事件，并在OnClickListener中进行处理。
         vp.setOnTouchListener(
                 new View.OnTouchListener() {
-                    private boolean moved;
 
                     @Override
                     public boolean onTouch(View view, MotionEvent motionEvent) {
-                        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                            moved = false;
-                            return true;
-                        }
-                        if (motionEvent.getAction() == MotionEvent.ACTION_MOVE) {
-                            moved = true;
-                        }
-                        if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                            if (!moved) {
-                                view.performClick();
-                            }
-                        }
-                        return false;
+                        return gesture.onTouchEvent(motionEvent);
                     }
                 }
         );
+
 
         // then you can simply use the standard onClickListener ...
         vp.setOnClickListener(
