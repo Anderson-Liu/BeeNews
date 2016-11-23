@@ -2,11 +2,15 @@ package cn.peacesky.beenews.util;
 
 import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
 import com.orhanobut.logger.Logger;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+// import org.json.JSONArray;
+// import org.json.JSONException;
+// import org.json.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,13 +53,13 @@ public class DataUtil {
     private ListArticleItem parseJson2ListArticle(JSONObject jsonItem) {
         ListArticleItem listArticleItem = new ListArticleItem();
         try {
-            int type = jsonItem.getInt("type");
+            int type = jsonItem.getIntValue("type");
             String summary = jsonItem.getString("summary");
-            int aid = jsonItem.getInt("aid");
+            int aid = jsonItem.getIntValue("aid");
             String title = jsonItem.getString("title");
             String imageUrls = jsonItem.getString("imageUrls");
             String publishDate = jsonItem.getString("publishDate");
-            int readTime = jsonItem.getInt("readTime");
+            int readTime = jsonItem.getIntValue("readTime");
             listArticleItem.setId(aid);
             listArticleItem.setType(type);
             listArticleItem.setTitle(title);
@@ -79,14 +83,14 @@ public class DataUtil {
     public ArticleItem parseJson2Article(JSONObject jsonItem) {
         ArticleItem articleItem = new ArticleItem();
         try {
-            int type = jsonItem.getInt("type");
-            int aid = jsonItem.getInt("aid");
+            int type = jsonItem.getIntValue("type");
+            int aid = jsonItem.getIntValue("aid");
             String title = jsonItem.getString("title");
             String content = jsonItem.getString("content");
             String source = jsonItem.getString("source");
             String imageUrls = jsonItem.getString("imageUrls");
             String publishDate = jsonItem.getString("publishDate");
-            int readTime = jsonItem.getInt("readTime");
+            int readTime = jsonItem.getIntValue("readTime");
             articleItem.setId(aid);
             articleItem.setType(type);
             articleItem.setTitle(title);
@@ -130,9 +134,9 @@ public class DataUtil {
             if (result == null) {
                 return list;
             }
-            JSONObject resultJson = new JSONObject(result);
+            JSONObject resultJson = JSON.parseObject(result);
             JSONArray items = (JSONArray) resultJson.get("_items");
-            for (int i = 0; i < items.length(); i++) {
+            for (int i = 0; i < items.size(); i++) {
                 JSONObject jsonItem = items.getJSONObject(i);
                 ListArticleItem listArticleItem = this.parseJson2ListArticle(jsonItem);
                 list.add(listArticleItem);

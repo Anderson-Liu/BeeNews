@@ -63,8 +63,8 @@ dependencies {
     compile 'com.google.android.gms:play-services-appindexing:9.2.1'
     compile files('libs/jpush-android-2.1.7.jar')
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    // compile(name: 'SecurityGuardSDK-external-release-5.1.38', ext: 'aar')
-    // compile files('libs/SecurityGuardSDK-5.1.38.jar')
+    compile 'com.alibaba:fastjson:1.2.21'
+    compile 'com.alibaba:fastjson:1.1.55.android'
 }
 
 repositories {

@@ -13,13 +13,16 @@ import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.orhanobut.logger.Logger;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+// import org.json.JSONArray;
+// import org.json.JSONException;
+// import org.json.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
 import java.util.Arrays;
 
 import butterknife.ButterKnife;
@@ -85,7 +88,7 @@ public class DetailActivity extends AppCompatActivity {
             String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
             JSONObject object = null;
             try {
-                object = new JSONObject(extras);
+                object = JSON.parseObject(extras);
                 columnType = Integer.parseInt(object.getString("type"));
                 articleID = Integer.parseInt(object.getString("aid"));
                 Logger.json(object.toString());
@@ -133,7 +136,7 @@ public class DetailActivity extends AppCompatActivity {
             try {
                 result = dataUtil.request(url);
                 if (result != null) {
-                    JSONObject resultJson = new JSONObject(result);
+                    JSONObject resultJson = JSON.parseObject(result);
                     JSONArray items = (JSONArray) resultJson.get("_items");
                     JSONObject item = items.getJSONObject(0);
                     articleItem = dataUtil.parseJson2Article(item);

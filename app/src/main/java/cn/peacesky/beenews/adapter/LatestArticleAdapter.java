@@ -284,8 +284,7 @@ public class LatestArticleAdapter extends RecyclerView.Adapter<RecyclerView.View
                 });
 
 
-        // 没办法直接onClickListener,只能变相通过onTouchListener的按键动作来判断是滑动还是点击
-        // 如果是点击，触发点击事件，并在OnClickListener中进行处理。
+        // 通过调用gesture的onTouchEvent解决用户按键事件的监听相应问题
         vp.setOnTouchListener(
                 new View.OnTouchListener() {
 
