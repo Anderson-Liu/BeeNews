@@ -21,8 +21,7 @@
   - 使用[MongoDB](https://github.com/mongodb/mongo-java-driver)作为格式化数据存储数据库
   - 通过[七牛云SDK](https://github.com/qiniu/java-sdk)将图片自动上传到七牛云中, 并在获取时使用图片压缩url，提升性能
   - 使用[Python EVE 框架](https://github.com/nicolaiarocci/eve) 设计构建RESTful API
-
+  - 结合Redis提升性能
 ## 截图
 
 ![图1](http://7xriwb.com1.z0.glb.clouddn.com/device-2016-08-01-010028.png?imageMogr2/thumbnail/500x/strip)
-![图2](http://7xriwb.com1.z0.glb.clouddn.com/device-2016-08-01-010028.png?imageMogr2/thumbnail/500x/strip)
